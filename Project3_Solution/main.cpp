@@ -9,8 +9,11 @@
 #include <iostream>
 #include <fstream>
 #include <string>
+#include <chrono>
+#include <ctime>
 #include "common.h"
 #include "vectorStuff.h"
+#include "arrayStuff.h"
 
 using namespace std;
 
@@ -19,15 +22,9 @@ void processToken(string token);
 
 const int EXIT = -1;
 const int SUCCESS = 0;
-int wordCount = 0;
-int countVar = 0;
-int numberDeleted = 0;
-entry* words;
-
 
 int _tmain(int argc, _TCHAR* argv[])
 {
-	
 	ifstream myFile;
 	string fileName = "TestData.txt";
 
@@ -49,7 +46,8 @@ int _tmain(int argc, _TCHAR* argv[])
 
 	// read lines from file, pass to extractTokens
 	string line;	
-									
+							
+
 	//reads each line of the file
 	while (getline(myFile, line))
 	{
@@ -59,9 +57,26 @@ int _tmain(int argc, _TCHAR* argv[])
 
 	removeVectorDuplicates();
 
-	//TODO: implement timer wrapper
+	std::chrono::high_resolution_clock::time_point startTime;
+	std::chrono::high_resolution_clock::time_point endTime;
+	std::chrono::duration<double> timeSpan;
+
+	startTime = std::chrono::high_resolution_clock::now();
 	sortVector();
+	endTime = std::chrono::high_resolution_clock::now();
+	timeSpan = std::chrono::duration_cast<std::chrono::duration<double>>(endTime - startTime);
+	double vectorTime = timeSpan.count();
+
+	startTime = std::chrono::high_resolution_clock::now();
+	sortArray();
+	endTime = std::chrono::high_resolution_clock::now();
+	timeSpan = std::chrono::duration_cast<std::chrono::duration<double>>(endTime - startTime);
+	double arrayTime = timeSpan.count();
+
+	cout << "Vector runtime: " << vectorTime << endl;
+	cout << "Array runtime: " << arrayTime << endl;
 	printVectorAscending();
+	printArrayAscending();
 
 	ofstream myfile;
 	//creates output file
@@ -69,8 +84,6 @@ int _tmain(int argc, _TCHAR* argv[])
 
 	//closes output file
 	myfile.close();
-
-
 
 	return SUCCESS; // no problems!
 }
@@ -84,11 +97,13 @@ void extractTokensFromLine(std::string &myString)
 	while (getline(ss, tempToken, CHAR_TO_SEARCH_FOR))
 	{
 		processToken(tempToken);
+		wordCount++;
 	}
 }
 
 void processToken(string token)
 {
 	addTokenToVector(token);
+	addTokenToArray(token);
 
 }

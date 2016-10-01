@@ -17,7 +17,7 @@ bool sortDecending(const entry &a, const entry &b)
 	return false;
 }
 
-bool sortNumOccurences(const entry &a, const entry &b)
+bool sortNumOccurrences(const entry &a, const entry &b)
 {
 	return a.number_occurences < b.number_occurences;
 }

@@ -7,8 +7,6 @@
 #include "common.h"
 #include "vectorStuff.h"
 
-#define strcasecmp _stricmp
-
 using namespace std;
 
 vector<entry> wordVector;
@@ -23,9 +21,12 @@ void addTokenToVector(string token)
 
 void sortVector()
 {
-	sort(wordVector.begin(), wordVector.end(), sortAscending);
-	sort(wordVector.begin(), wordVector.end(), sortDecending);
-	sort(wordVector.begin(), wordVector.end(), sortNumOccurences);
+	for (int i = 0; i < 100; i++)
+	{
+		sort(wordVector.begin(), wordVector.end(), sortAscending);
+		sort(wordVector.begin(), wordVector.end(), sortDecending);
+		sort(wordVector.begin(), wordVector.end(), sortNumOccurrences);
+	}
 }
 
 void printVectorAscending()
@@ -34,7 +35,7 @@ void printVectorAscending()
 	for (entry x : wordVector)
 	{
 		//TODO: print to file
-		cout << x.word << ":\t" << x.number_occurences << "\n";
+		//cout << x.word << ": " << x.number_occurences << "\n";
 	}
 }
 
