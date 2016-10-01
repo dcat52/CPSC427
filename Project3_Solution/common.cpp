@@ -1,3 +1,8 @@
+// Proj3.cpp
+//
+// Kim Jimenez
+// Davis Catherman
+
 #include "stdafx.h"
 #include "common.h"
 

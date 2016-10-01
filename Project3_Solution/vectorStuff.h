@@ -1,3 +1,8 @@
+// Proj3.cpp
+//
+// Kim Jimenez
+// Davis Catherman
+
 #pragma once
 
 #include <string>

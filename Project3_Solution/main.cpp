@@ -1,4 +1,4 @@
-// Proj3.cpp : Defines the entry point for the console application.
+// Proj3.cpp
 //
 // Kim Jimenez
 // Davis Catherman
@@ -7,21 +7,19 @@
 #include <sstream>
 #include <cstdlib>
 #include <iostream>
+#include <iomanip>
 #include <fstream>
 #include <string>
 #include <chrono>
 #include <ctime>
+#include "constants.h"
 #include "common.h"
 #include "vectorStuff.h"
 #include "arrayStuff.h"
-
 using namespace std;
 
 void extractTokensFromLine(std::string &myString);
 void processToken(string token);
-
-const int EXIT = -1;
-const int SUCCESS = 0;
 
 int _tmain(int argc, _TCHAR* argv[])
 {
@@ -56,6 +54,7 @@ int _tmain(int argc, _TCHAR* argv[])
 	myFile.close(); // done with input file
 
 	removeVectorDuplicates();
+	removeArrayDuplicates();
 
 	std::chrono::high_resolution_clock::time_point startTime;
 	std::chrono::high_resolution_clock::time_point endTime;
@@ -65,25 +64,32 @@ int _tmain(int argc, _TCHAR* argv[])
 	sortVector();
 	endTime = std::chrono::high_resolution_clock::now();
 	timeSpan = std::chrono::duration_cast<std::chrono::duration<double>>(endTime - startTime);
-	double vectorTime = timeSpan.count();
+	double vectorTime = timeSpan.count()/(3 * 1000);
 
 	startTime = std::chrono::high_resolution_clock::now();
 	sortArray();
 	endTime = std::chrono::high_resolution_clock::now();
 	timeSpan = std::chrono::duration_cast<std::chrono::duration<double>>(endTime - startTime);
-	double arrayTime = timeSpan.count();
+	double arrayTime = timeSpan.count()/(3*1000);
 
-	cout << "Vector runtime: " << vectorTime << endl;
-	cout << "Array runtime: " << arrayTime << endl;
+	cout << "Avg. Vector runtime: " << vectorTime << endl;
+	cout << "Avg. Array runtime: " << arrayTime << endl;
+
+	double ratio = vectorTime / arrayTime;
+	if (ratio < 1)
+	{
+		ratio = arrayTime / vectorTime;
+		cout << setprecision(2) << "Vector sort is roughly " << ratio << " time(s) faster!" << endl;
+	}
+	else
+	{
+		cout << setprecision(2) << "Array sort is roughly " << ratio << " time(s) faster!" << endl;
+	}
+
 	printVectorAscending();
 	printArrayAscending();
 
-	ofstream myfile;
-	//creates output file
-	myfile.open("outfile.txt");
-
-	//closes output file
-	myfile.close();
+	
 
 	return SUCCESS; // no problems!
 }
@@ -97,7 +103,6 @@ void extractTokensFromLine(std::string &myString)
 	while (getline(ss, tempToken, CHAR_TO_SEARCH_FOR))
 	{
 		processToken(tempToken);
-		wordCount++;
 	}
 }
 

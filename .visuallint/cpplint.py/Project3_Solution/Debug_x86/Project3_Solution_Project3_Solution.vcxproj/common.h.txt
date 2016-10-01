@@ -1,0 +1,9 @@
+C:\Users\Davis\OneDrive\Documents\GitHub\CPSC427-Project3\Project3_Solution\common.h(0):  No copyright message found.  You should have a line: "Copyright [year] <Copyright Owner>"  [legal/copyright] [5]
+C:\Users\Davis\OneDrive\Documents\GitHub\CPSC427-Project3\Project3_Solution\common.h(0):  No #ifndef header guard found, suggested CPP variable is: PROJECT3_SOLUTION_COMMON_H_  [build/header_guard] [5]
+C:\Users\Davis\OneDrive\Documents\GitHub\CPSC427-Project3\Project3_Solution\common.h(13):  { should almost always be at the end of the previous line  [whitespace/braces] [4]
+C:\Users\Davis\OneDrive\Documents\GitHub\CPSC427-Project3\Project3_Solution\common.h(14):  Tab found; better to use spaces  [whitespace/tab] [1]
+C:\Users\Davis\OneDrive\Documents\GitHub\CPSC427-Project3\Project3_Solution\common.h(15):  Tab found; better to use spaces  [whitespace/tab] [1]
+C:\Users\Davis\OneDrive\Documents\GitHub\CPSC427-Project3\Project3_Solution\common.h(16):  At least two spaces is best between code and comments  [whitespace/comments] [2]
+C:\Users\Davis\OneDrive\Documents\GitHub\CPSC427-Project3\Project3_Solution\common.h(20):  Could not find a newline character at the end of the file.  [whitespace/ending_newline] [5]
+Done processing C:\Users\Davis\OneDrive\Documents\GitHub\CPSC427-Project3\Project3_Solution\common.h
+Total errors found: 7

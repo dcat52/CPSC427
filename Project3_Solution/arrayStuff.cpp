@@ -1,51 +1,59 @@
+// Proj3.cpp
+//
+// Kim Jimenez
+// Davis Catherman
+
 #include "stdafx.h"
 #include <string>
 #include <algorithm>
-#include <iostream>
+#include <fstream>
 #include "arrayStuff.h"
 #include "common.h"
 
 using namespace std;
 
 entry* noDupsArray;
-entry wordArray[1000000];
+entry wordArray[10000];
 int wordCount = 0;
+int numberDeleted = 0;
 void addTokenToArray(std::string token)
 {
-	entry temp = entry();
-	temp.word = token;
-	temp.number_occurences = 1;
-	wordArray[wordCount] = temp;
+	wordArray[wordCount].word = token;
+	wordArray[wordCount].number_occurences++;
 	wordCount++;
 }
 
 void sortArray()
 {
-	cout << "sort Array" << endl;
-	for (int i = 0; i < 100; i++)
+	for (int i = 0; i < 10000; i++)
 	{
-		sort(noDupsArray.begin(), end(noDupsArray), sortAscending);
-		sort(noDupsArray, noDupsArray + sizeof(noDupsArray), sortDecending);
-		sort(noDupsArray, noDupsArray + sizeof(noDupsArray), sortNumOccurrences);
+		sort(wordArray, wordArray + wordCount - numberDeleted, sortAscending);
+		sort(wordArray, wordArray + wordCount - numberDeleted, sortDecending);
+		sort(wordArray, wordArray + wordCount - numberDeleted, sortNumOccurrences);
 	}
-	cout << "sort Array v2" << endl;
 }
 
 void printArrayAscending()
 {
-	cout << "print array ascending" << endl;
-	sort(noDupsArray, noDupsArray + sizeof(noDupsArray), sortAscending);
-	for (int i = 0; i < sizeof(noDupsArray); i++)
+	sort(wordArray, wordArray + wordCount - numberDeleted, sortDecending);
+
+	ofstream myfile;
+	//creates output file
+	myfile.open("Array.txt");
+
+	for (int i = 0; i < wordCount - numberDeleted; i++)
 	{
 		//TODO: print to file
-		entry temp = noDupsArray[i];
-		cout << temp.word << ": " << temp.number_occurences << "\n";
+		entry temp = wordArray[i];
+		myfile << temp.word << ": " << temp.number_occurences << endl;
 	}
+
+	//closes output file
+	myfile.close();
 }
 
 void removeArrayDuplicates()
 {
-	int numberDeleted = 0;
 
 	for (int i = 0; i < wordCount - 1; i++)
 	{
@@ -61,12 +69,5 @@ void removeArrayDuplicates()
 		}
 	}
 
-	sort(wordArray, wordArray + wordCount, sortAscending);
-	noDupsArray = new entry[wordCount - numberDeleted+1];
-	int j = 0;
-	for (int i = numberDeleted; i < wordCount; i++)
-	{
-		noDupsArray[j] = wordArray[i];
-		j++;
-	}
+	sort(wordArray, wordArray + wordCount, sortDecending);
 }

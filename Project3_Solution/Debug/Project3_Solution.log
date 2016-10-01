@@ -1,3 +1,10 @@
-﻿  arrayStuff.cpp
+﻿  stdafx.cpp
+  vectorStuff.cpp
+c:\users\davis\onedrive\documents\github\cpsc427-project3\project3_solution\vectorstuff.cpp(57): warning C4018: '<': signed/unsigned mismatch
+c:\users\davis\onedrive\documents\github\cpsc427-project3\project3_solution\vectorstuff.cpp(59): warning C4018: '<': signed/unsigned mismatch
+  main.cpp
+  common.cpp
+  arrayStuff.cpp
+  Generating Code...
   Project3_Solution.vcxproj -> C:\Users\Davis\OneDrive\Documents\GitHub\CPSC427-Project3\Debug\Project3_Solution.exe
   Project3_Solution.vcxproj -> C:\Users\Davis\OneDrive\Documents\GitHub\CPSC427-Project3\Debug\Project3_Solution.pdb (Full PDB)

@@ -1,9 +1,14 @@
+// Proj3.cpp
+//
+// Kim Jimenez
+// Davis Catherman
+
 #include "stdafx.h"
 #include <cstdlib>
 #include <string>
 #include <algorithm>
 #include <functional>
-#include <iostream>
+#include <fstream>
 #include "common.h"
 #include "vectorStuff.h"
 
@@ -21,7 +26,7 @@ void addTokenToVector(string token)
 
 void sortVector()
 {
-	for (int i = 0; i < 100; i++)
+	for (int i = 0; i < 10000; i++)
 	{
 		sort(wordVector.begin(), wordVector.end(), sortAscending);
 		sort(wordVector.begin(), wordVector.end(), sortDecending);
@@ -31,12 +36,20 @@ void sortVector()
 
 void printVectorAscending()
 {
-	sort(wordVector.begin(), wordVector.end(), sortAscending);
+	sort(wordVector.begin(), wordVector.end(), sortDecending);
+	
+	ofstream myfile;
+	//creates output file
+	myfile.open("Vector.txt");
+
 	for (entry x : wordVector)
 	{
 		//TODO: print to file
-		//cout << x.word << ": " << x.number_occurences << "\n";
+		myfile << x.word << ": " << x.number_occurences << endl;
 	}
+
+	//closes output file
+	myfile.close();
 }
 
 void removeVectorDuplicates()
