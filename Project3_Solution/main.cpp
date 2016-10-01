@@ -1,4 +1,4 @@
-// Proj2.cpp : Defines the entry point for the console application.
+// Proj3.cpp : Defines the entry point for the console application.
 //
 // Kim Jimenez
 // Davis Catherman
@@ -11,8 +11,6 @@
 #include <string>
 #include "common.h"
 #include "vectorStuff.h"
-
-#define strcasecmp _stricmp
 
 using namespace std;
 
@@ -58,6 +56,12 @@ int _tmain(int argc, _TCHAR* argv[])
 		extractTokensFromLine(line);
 	}
 	myFile.close(); // done with input file
+
+	removeVectorDuplicates();
+
+	//TODO: implement timer wrapper
+	sortVector();
+	printVectorAscending();
 
 	ofstream myfile;
 	//creates output file

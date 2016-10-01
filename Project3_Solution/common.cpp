@@ -1,19 +1,23 @@
-#pragma once
 #include "stdafx.h"
 #include "common.h"
-/*
+
+#define strcasecmp _stricmp
+
 bool sortAscending(const entry &a, const entry &b)
 {
-	return a.word < b.word;
+	if (strcasecmp(a.word.c_str(), b.word.c_str()) < 0)
+		return true;
+	return false;
 }
 
 bool sortDecending(const entry &a, const entry &b)
 {
-	return a.word > b.word;
+	if (strcasecmp(a.word.c_str(), b.word.c_str()) > 0)
+		return true;
+	return false;
 }
 
 bool sortNumOccurences(const entry &a, const entry &b)
 {
 	return a.number_occurences < b.number_occurences;
 }
-*/
