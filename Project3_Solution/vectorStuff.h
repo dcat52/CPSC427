@@ -2,8 +2,9 @@
 
 #include <string>
 #include <vector>
+#include "common.h"
 
-std::vector<entry> wordVector;
+extern std::vector<entry> wordVector;
 void addTokenToVector(std::string token);
 void sortVector();
 

@@ -3,5 +3,5 @@
   Compiling...
   main.cpp
   Generating Code...
-vectorStuff.obj : error LNK2005: "class std::vector<struct entry,class std::allocator<struct entry> > wordVector" (?wordVector@@3V?$vector@Uentry@@V?$allocator@Uentry@@@std@@@std@@A) already defined in main.obj
-C:\Users\Kimberly\Documents\Visual Studio 2015\Projects\Project3_Solution\Debug\Project3_Solution.exe : fatal error LNK1169: one or more multiply defined symbols found
+  Project3_Solution.vcxproj -> C:\Users\Davis\OneDrive\Documents\GitHub\CPSC427-Project3\Debug\Project3_Solution.exe
+  Project3_Solution.vcxproj -> C:\Users\Davis\OneDrive\Documents\GitHub\CPSC427-Project3\Debug\Project3_Solution.pdb (Full PDB)

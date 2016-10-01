@@ -8,6 +8,7 @@
 
 using namespace std;
 
+std::vector<entry> wordVector;
 void addTokenToVector(string token)
 {
 	entry temp = entry();
