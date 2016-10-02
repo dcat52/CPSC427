@@ -32,15 +32,15 @@ void sortVector()
 	for (int i = 0; i < 10000; i++)
 	{
 		sort(wordVector.begin(), wordVector.end(), sortAscending);			//sorts vector in ascending order
-		sort(wordVector.begin(), wordVector.end(), sortDecending);			//sorts vector in decending order
+		sort(wordVector.begin(), wordVector.end(), sortDescending);			//sorts vector in descending order
 		sort(wordVector.begin(), wordVector.end(), sortNumOccurrences);		//sorts vector based on number of occurrences
 	}
 }
 
-//method will print vector in Decending order
-void printVectorDecending()
+//method will print vector in Descending order
+void printVectorDescending()
 {
-	sort(wordVector.begin(), wordVector.end(), sortDecending);			//sorts vector in decending order
+	sort(wordVector.begin(), wordVector.end(), sortDescending);			//sorts vector in descending order
 	
 	ofstream myfile;
 	//creates output file
@@ -71,7 +71,7 @@ void removeVectorDuplicates()
 			}
 		}
 	}
-	sort(wordVector.begin(), wordVector.end(), sortDecending);		//vector is sorted in descending order
+	sort(wordVector.begin(), wordVector.end(), sortDescending);		//vector is sorted in descending order
 
 	while (wordVector.at(wordVector.size()-1).word == "")
 	{

@@ -31,17 +31,17 @@ void sortArray()
 	for (int i = 0; i < 10000; i++)
 	{
 		sort(wordArray, wordArray + wordCount - numberDeleted, sortAscending);				//sorts array in ascending order
-		sort(wordArray, wordArray + wordCount - numberDeleted, sortDecending);				//sorts array in descending order
+		sort(wordArray, wordArray + wordCount - numberDeleted, sortDescending);				//sorts array in descending order
 		sort(wordArray, wordArray + wordCount - numberDeleted, sortNumOccurrences);			//sorts array based on number of occurrences
 	}
 }
 
-/*method sorts array in Decending order
+/*method sorts array in Descending order
   (i.e. CBA order regardless of case
 */
-void printArrayDecending()
+void printArrayDescending()
 {
-	sort(wordArray, wordArray + wordCount - numberDeleted, sortDecending);
+	sort(wordArray, wordArray + wordCount - numberDeleted, sortDescending);
 
 	ofstream myfile;
 	//creates output file
@@ -76,5 +76,5 @@ void removeArrayDuplicates()
 		}
 	}
 
-	sort(wordArray, wordArray + wordCount, sortDecending);
+	sort(wordArray, wordArray + wordCount, sortDescending);
 }

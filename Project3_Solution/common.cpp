@@ -25,7 +25,7 @@ bool sortAscending(const entry &a, const entry &b)
 	returns true if first word comes after second word
 		otherwise returns false
 */
-bool sortDecending(const entry &a, const entry &b)
+bool sortDescending(const entry &a, const entry &b)
 {
 	if (strcasecmp(a.word.c_str(), b.word.c_str()) > 0)		//checks to see if first word from entry a comes after word from entry b
 		return true;

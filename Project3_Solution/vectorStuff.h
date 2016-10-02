@@ -13,5 +13,5 @@
 extern std::vector<entry> wordVector;		//vector of entries
 void addTokenToVector(std::string token);	//method will add token to vector
 void sortVector();							//method will sort vector
-void printVectorDecending();				//method will print out vector in Decending order
+void printVectorDescending();				//method will print out vector in Descending order
 void removeVectorDuplicates();				//method will remove duplicate words

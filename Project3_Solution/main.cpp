@@ -86,8 +86,8 @@ int _tmain(int argc, _TCHAR* argv[])
 		cout << setprecision(2) << "Array sort is roughly " << ratio << " time(s) faster!" << endl;
 	}
 
-	printVectorDecending();					//prints Vector in decending order
-	printArrayDecending();					//prints Array in decending order
+	printVectorDescending();					//prints Vector in descending order
+	printArrayDescending();					//prints Array in descending order
 
 
 
