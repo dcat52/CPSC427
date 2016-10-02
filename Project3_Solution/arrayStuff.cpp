@@ -36,10 +36,10 @@ void sortArray()
 	}
 }
 
-/*method sorts array in ascending order
-  (i.e. ABC order regardless of case
+/*method sorts array in Decending order
+  (i.e. CBA order regardless of case
 */
-void printArrayAscending()
+void printArrayDecending()
 {
 	sort(wordArray, wordArray + wordCount - numberDeleted, sortDecending);
 
@@ -50,7 +50,6 @@ void printArrayAscending()
 	//loops through the array from index 0 to wordCount-numberDeleted
 	for (int i = 0; i < wordCount - numberDeleted; i++)
 	{
-		//TODO: print to file
 		entry temp = wordArray[i];
 		myfile << temp.word << ": " << temp.number_occurences << endl;
 	}

@@ -37,8 +37,8 @@ void sortVector()
 	}
 }
 
-//method will print vector in ascending order
-void printVectorAscending()
+//method will print vector in Decending order
+void printVectorDecending()
 {
 	sort(wordVector.begin(), wordVector.end(), sortDecending);			//sorts vector in decending order
 	
@@ -48,7 +48,6 @@ void printVectorAscending()
 
 	for (entry x : wordVector)
 	{
-		//TODO: print to file
 		myfile << x.word << ": " << x.number_occurences << endl;
 	}
 
