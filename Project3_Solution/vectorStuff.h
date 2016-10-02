@@ -1,16 +1,17 @@
 // Proj3.cpp
 //
-// Kim Jimenez
 // Davis Catherman
+// Kim Jimenez
+
 
 #pragma once
 
-#include <string>
-#include <vector>
+#include <string>				//string library
+#include <vector>				//vector library
 #include "common.h"
 
-extern std::vector<entry> wordVector;
-void addTokenToVector(std::string token);
-void sortVector();
-void printVectorAscending();
-void removeVectorDuplicates();
+extern std::vector<entry> wordVector;		//vector of entries
+void addTokenToVector(std::string token);	//method will add token to vector
+void sortVector();							//method will sort vector
+void printVectorAscending();				//method will print out vector in ascending order
+void removeVectorDuplicates();				//method will remove duplicate words

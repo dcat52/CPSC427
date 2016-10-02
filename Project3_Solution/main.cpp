@@ -1,7 +1,7 @@
 // Proj3.cpp
 //
-// Kim Jimenez
 // Davis Catherman
+// Kim Jimenez
 
 #include "stdafx.h"
 #include <sstream>
@@ -18,7 +18,7 @@
 #include "arrayStuff.h"
 using namespace std;
 
-void extractTokensFromLine(std::string &myString);
+void extractTokensFromLine(std::string &myString);						
 void processToken(string token);
 
 int _tmain(int argc, _TCHAR* argv[])
@@ -43,8 +43,8 @@ int _tmain(int argc, _TCHAR* argv[])
 	}
 
 	// read lines from file, pass to extractTokens
-	string line;	
-							
+	string line;
+
 
 	//reads each line of the file
 	while (getline(myFile, line))
@@ -53,51 +53,51 @@ int _tmain(int argc, _TCHAR* argv[])
 	}
 	myFile.close(); // done with input file
 
-	removeVectorDuplicates();
-	removeArrayDuplicates();
+	removeVectorDuplicates();												//removes duplicates from Vector
+	removeArrayDuplicates();												//removes duplicates from Array
 
-	std::chrono::high_resolution_clock::time_point startTime;
-	std::chrono::high_resolution_clock::time_point endTime;
-	std::chrono::duration<double> timeSpan;
+	std::chrono::high_resolution_clock::time_point startTime;				//start time for timer
+	std::chrono::high_resolution_clock::time_point endTime;					//end time for timer
+	std::chrono::duration<double> timeSpan;									//records amount of time it takes to sort with each method (Vector and Array)
 
-	startTime = std::chrono::high_resolution_clock::now();
-	sortVector();
-	endTime = std::chrono::high_resolution_clock::now();
-	timeSpan = std::chrono::duration_cast<std::chrono::duration<double>>(endTime - startTime);
-	double vectorTime = timeSpan.count()/(3 * 1000);
+	startTime = std::chrono::high_resolution_clock::now();					//timer starts
+	sortVector();															//sorts Vector
+	endTime = std::chrono::high_resolution_clock::now();					//timer ends
+	timeSpan = std::chrono::duration_cast<std::chrono::duration<double>>(endTime - startTime);	//records amount of time it took Vector approach to sort
+	double vectorTime = timeSpan.count() / (3 * 1000);											//records amount of time it took Vector approach to sort
 
-	startTime = std::chrono::high_resolution_clock::now();
-	sortArray();
-	endTime = std::chrono::high_resolution_clock::now();
-	timeSpan = std::chrono::duration_cast<std::chrono::duration<double>>(endTime - startTime);
-	double arrayTime = timeSpan.count()/(3*1000);
+	startTime = std::chrono::high_resolution_clock::now();										//timer starts
+	sortArray();																				//sorts Array
+	endTime = std::chrono::high_resolution_clock::now();										//timers ends
+	timeSpan = std::chrono::duration_cast<std::chrono::duration<double>>(endTime - startTime);	//records amount of time it took Array approach to sort
+	double arrayTime = timeSpan.count() / (3 * 1000);											//records amount of time it took Array approach to sort
 
-	cout << "Avg. Vector runtime: " << vectorTime << endl;
-	cout << "Avg. Array runtime: " << arrayTime << endl;
+	cout << "Avg. Vector runtime: " << vectorTime << endl;				//prints amount of time to took Vector to sort
+	cout << "Avg. Array runtime: " << arrayTime << endl;				//prints amount of time it took Array to sort
 
-	double ratio = vectorTime / arrayTime;
-	if (ratio < 1)
+	double ratio = vectorTime / arrayTime;								//calculates the amount of vectorTime divided by arrayTime
+	if (ratio < 1)														//if ratio is less than 1 then Vector sort is faster
 	{
 		ratio = arrayTime / vectorTime;
 		cout << setprecision(2) << "Vector sort is roughly " << ratio << " time(s) faster!" << endl;
 	}
-	else
+	else                                                               //else than Array sort is faster
 	{
 		cout << setprecision(2) << "Array sort is roughly " << ratio << " time(s) faster!" << endl;
 	}
 
-	printVectorAscending();
-	printArrayAscending();
+	printVectorAscending();					//prints Vector in ascending order
+	printArrayAscending();					//prints Array in ascending order
 
-	
+
 
 	return SUCCESS; // no problems!
 }
 
 void extractTokensFromLine(std::string &myString)
 {
-	const char CHAR_TO_SEARCH_FOR = ' ';
-	stringstream ss(myString);
+	const char CHAR_TO_SEARCH_FOR = ' ';		//searched if any character is ' '
+	stringstream ss(myString);					
 	string tempToken;
 	//reads each line and each line will go through the processToken method
 	while (getline(ss, tempToken, CHAR_TO_SEARCH_FOR))
@@ -108,7 +108,7 @@ void extractTokensFromLine(std::string &myString)
 
 void processToken(string token)
 {
-	addTokenToVector(token);
-	addTokenToArray(token);
+	addTokenToVector(token);			//adds token to Vector
+	addTokenToArray(token);				//adds token to Array
 
 }

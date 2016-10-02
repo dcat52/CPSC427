@@ -1,7 +1,7 @@
 // Proj3.cpp
 //
-// Kim Jimenez
 // Davis Catherman
+// Kim Jimenez
 
 #pragma once
 
@@ -15,6 +15,6 @@ struct entry
 	int number_occurences;		// number of times word appears in the file
 }; // REMEMBER the last semi-colon
 
-bool sortAscending(const entry &a, const entry &b);
-bool sortDecending(const entry &a, const entry &b);
-bool sortNumOccurrences(const entry &a, const entry &b);
+bool sortAscending(const entry &a, const entry &b);				//method will check which entry comes first
+bool sortDecending(const entry &a, const entry &b);				//method will check which entry comes second
+bool sortNumOccurrences(const entry &a, const entry &b);		//method will check which word has more occurrences

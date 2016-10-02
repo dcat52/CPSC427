@@ -1,7 +1,7 @@
 // Proj3.cpp
 //
-// Kim Jimenez
 // Davis Catherman
+// Kim Jimenez
 
 #include "stdafx.h"
 #include <string>
@@ -12,27 +12,33 @@
 
 using namespace std;
 
-entry* noDupsArray;
-entry wordArray[10000];
-int wordCount = 0;
-int numberDeleted = 0;
-void addTokenToArray(std::string token)
+entry* noDupsArray;											//entry array with no duplicates
+entry wordArray[10000];										//entry array of size 10000
+int wordCount = 0;											//initial word count set to 0
+int numberDeleted = 0;										//initial number of words deleted
+
+//method takes in string and is added to wordArray
+void addTokenToArray(std::string token)						
 {
-	wordArray[wordCount].word = token;
-	wordArray[wordCount].number_occurences++;
-	wordCount++;
+	wordArray[wordCount].word = token;						//word of entry at position indicated is set to token
+	wordArray[wordCount].number_occurences++;				//number of occurrences is incremented
+	wordCount++;											//wordCount is incremented
 }
 
+//method sorts array 
 void sortArray()
-{
+{	//loops through the entire array 
 	for (int i = 0; i < 10000; i++)
 	{
-		sort(wordArray, wordArray + wordCount - numberDeleted, sortAscending);
-		sort(wordArray, wordArray + wordCount - numberDeleted, sortDecending);
-		sort(wordArray, wordArray + wordCount - numberDeleted, sortNumOccurrences);
+		sort(wordArray, wordArray + wordCount - numberDeleted, sortAscending);				//sorts array in ascending order
+		sort(wordArray, wordArray + wordCount - numberDeleted, sortDecending);				//sorts array in descending order
+		sort(wordArray, wordArray + wordCount - numberDeleted, sortNumOccurrences);			//sorts array based on number of occurrences
 	}
 }
 
+/*method sorts array in ascending order
+  (i.e. ABC order regardless of case
+*/
 void printArrayAscending()
 {
 	sort(wordArray, wordArray + wordCount - numberDeleted, sortDecending);
@@ -41,6 +47,7 @@ void printArrayAscending()
 	//creates output file
 	myfile.open("Array.txt");
 
+	//loops through the array from index 0 to wordCount-numberDeleted
 	for (int i = 0; i < wordCount - numberDeleted; i++)
 	{
 		//TODO: print to file
@@ -52,9 +59,10 @@ void printArrayAscending()
 	myfile.close();
 }
 
+//method removes duplicate words
 void removeArrayDuplicates()
 {
-
+	//loops through the array
 	for (int i = 0; i < wordCount - 1; i++)
 	{
 		for (int j = i + 1; j < wordCount; j++)
