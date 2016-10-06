@@ -143,7 +143,7 @@
   </ItemDefinitionGroup>
   <ItemGroup>
     <Text Include="ReadMe.txt" />
-    <Text Include="TestData.txt" />
+    <Text Include="TestData1.txt" />
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="arrayStuff.h" />

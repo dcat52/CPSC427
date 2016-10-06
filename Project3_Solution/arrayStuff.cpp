@@ -12,7 +12,6 @@
 
 using namespace std;
 
-entry* noDupsArray;											//entry array with no duplicates
 entry wordArray[10000];										//entry array of size 10000
 int wordCount = 0;											//initial word count set to 0
 int numberDeleted = 0;										//initial number of words deleted

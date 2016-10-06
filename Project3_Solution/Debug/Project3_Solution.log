@@ -1,9 +1,8 @@
-﻿  vectorStuff.cpp
-c:\users\davis\onedrive\documents\github\cpsc427-project3\project3_solution\vectorstuff.cpp(61): warning C4018: '<': signed/unsigned mismatch
-c:\users\davis\onedrive\documents\github\cpsc427-project3\project3_solution\vectorstuff.cpp(63): warning C4018: '<': signed/unsigned mismatch
+﻿  arrayStuff.cpp
+  Generating Code...
+  Skipping... (no relevant changes detected)
+  vectorStuff.cpp
   main.cpp
   common.cpp
-  arrayStuff.cpp
-  Generating Code...
   Project3_Solution.vcxproj -> C:\Users\Davis\OneDrive\Documents\GitHub\CPSC427-Project3\Debug\Project3_Solution.exe
   Project3_Solution.vcxproj -> C:\Users\Davis\OneDrive\Documents\GitHub\CPSC427-Project3\Debug\Project3_Solution.pdb (Full PDB)
