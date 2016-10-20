@@ -30,13 +30,19 @@ int main(){
 	//in a non const pointer to getDataBetweenTags(..) without casting
 	/*vector<char> myLine;
 	std::copy(filecontents.begin(), filecontents.end(), back_inserter(myLine));*/
+	
+	// temp
+	std::vector<std::string> myLine;
 
 	//TODO  create an instance of the stringparser
+	KP_StringParserClass::StringParserClass sp;
 
 	//TODO set the tags
+	sp.setTags("<html>", "</html>");
 
 	//TODO pull out the data
-
+	sp.getDataBetweenTags("I Like <html>big data</html> cause dats lit", myLine);
+	
 	//TODO  write to file and to screen
 
 }
