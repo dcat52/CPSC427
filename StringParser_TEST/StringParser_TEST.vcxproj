@@ -57,7 +57,7 @@
     <Link>
       <SubSystem>Console</SubSystem>
       <GenerateDebugInformation>true</GenerateDebugInformation>
-      <AdditionalDependencies>..\FileReader\Debug\FileReader.lib;%(AdditionalDependencies)</AdditionalDependencies>
+      <AdditionalDependencies>..\StringParser\Debug\StringParser.lib;..\FileReader\Debug\FileReader.lib;%(AdditionalDependencies)</AdditionalDependencies>
     </Link>
   </ItemDefinitionGroup>
   <ItemDefinitionGroup Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">

@@ -17,7 +17,7 @@ StringParserClass::StringParserClass(void)
 
 StringParserClass::~StringParserClass(void)
 {
-	//be safe
+	// be safe
 	cleanup();
 }
 
@@ -33,12 +33,23 @@ bool StringParserClass::setTags(const char * pStartTag, const char * pEndTag)
 	return true;
 }
 
+// TODO: Test This Method
 bool StringParserClass::getDataBetweenTags(char * pDataToSearchThru, vector<string>& myVector)
 {
-	for (int i = 0; i < strlen(pDataToSearchThru); i++)
+	// get length of tags for use in the for loop
+	int lenOfTags = strlen(this->pStartTag) + strlen(this->pEndTag);
+	int startOfData = UNINITIALIZED;
+	int endOfData = UNINITIALIZED;
+
+	// iterate through the data, subtract length of string to not go out of bounds
+	for (int i = 0; i < strlen(pDataToSearchThru) - lenOfTags; i++)
 	{
-		//findTag(this->pStartTag, pDataToSearchThru, pDataToSearchThru);
-		//if (pDataToSearchThru[i] == 
+		// check if current char and beyond is equal to pStartTag
+		if (pDataToSearchThru[i] == *this->pStartTag)
+		{
+			// should be the 1st char of the data, or if no data, 1st char of pEndTag
+			startOfData = i + strlen(pStartTag);
+		}
 	}
 
 	return false;
