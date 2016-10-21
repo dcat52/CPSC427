@@ -1,5 +1,6 @@
 #include <iostream>
 #include <fstream>
+#include "string.h"
 #include "..\Include\FileReader.h"
 #include "..\Include\constants.h"
 #include "..\Include\Debug_Help.h"
@@ -24,7 +25,11 @@ int FileReader::getFileContents(const std::string filename, std::string & conten
 
 	//if file does not open then...
 	while (!myFile.is_open()) {
-		cout << "Could not find file, please enter a filename or an X to exit: ";
+		cout << ENTER_FN_OR_X;
+		string fileN;
+		cin >> fileN;
+		//filename = &fileN;
+
 
 		if (filename == EXITCHAR) {
 			return USER_CHOSE_TO_EXIT;
@@ -33,8 +38,22 @@ int FileReader::getFileContents(const std::string filename, std::string & conten
 		myFile.open(filename);
 	}
 
+	
+
+	string line;
+
+	while (getline(myFile, line)) {
+		contents.append(line);
+	}
+	
+	if (contents.size() == 0) {
+		myFile.close();
+		return COULD_NOT_READ_FILE_INTO_CONTAINER;		
+	}
+
 	myFile.close();
-	return 0;
+
+	return SUCCEEDED;
 }
 
 int FileReader::ReadTheWholeFile(const std::string & filename)

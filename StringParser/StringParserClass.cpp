@@ -12,7 +12,7 @@ StringParserClass::StringParserClass(void)
 {
 	setTags(START_TAG, END_TAG);
 	areTagsSet = false;
-	lastError = UNINITIALIZED;
+	lastError = ERROR_NO_ERROR;
 }
 
 StringParserClass::~StringParserClass(void)
@@ -36,6 +36,10 @@ bool StringParserClass::setTags(const char * pStartTag, const char * pEndTag)
 // TODO: Test This Method
 bool StringParserClass::getDataBetweenTags(char * pDataToSearchThru, vector<string>& myVector)
 {
+	if (strlen(this->pStartTag) == 0 || strlen(this->pEndTag) == 0) {
+		this->lastError = ERROR_TAGS_NULL;
+		return false;
+	}
 	// get length of tags for use in the for loop
 	int lenOfTags = strlen(this->pStartTag) + strlen(this->pEndTag);
 	int startOfData = UNINITIALIZED;
@@ -115,6 +119,8 @@ bool StringParserClass::getDataBetweenTags(char * pDataToSearchThru, vector<stri
 		// TODO: implement rest of error messages
 	}
 
+	if(myVector.size() != 0)
+		return true;
 	return false;
 }
 

@@ -24,6 +24,7 @@ void foreach(std::vector<std::string> myVector){
 
 int main(){
 	//TODO open file, if not there ask for a different file or exit
+	
 
 	//got file data, this is a bogus time and memory wasting step
 	//whose sole purpose is to provide a way to pass
@@ -43,6 +44,10 @@ int main(){
 	//TODO pull out the data
 	sp.getDataBetweenTags("<html>big data</html>21 cause dats 35<html></html><html>big data</html>", myLine);
 	
+	//TODO create an instance of the file reader
+	KP_FileReaderClass::FileReader fr;
+
+	//
 
 	//TODO  write to file and to screen
 	for(int i = 0; i < myLine.size(); i++)	
