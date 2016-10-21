@@ -41,9 +41,12 @@ int main(){
 	sp.setTags("<html>", "</html>");
 
 	//TODO pull out the data
-	sp.getDataBetweenTags("I Like <html>big data</html> cause dats lit", myLine);
+	sp.getDataBetweenTags("<html>big data</html>21 cause dats 35<html></html><html>big data</html>", myLine);
 	
+
 	//TODO  write to file and to screen
+	for(int i = 0; i < myLine.size(); i++)	
+		std::cout << myLine.at(i) << std::endl;
 
 }
 

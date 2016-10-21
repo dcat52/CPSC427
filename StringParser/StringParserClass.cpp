@@ -43,14 +43,17 @@ bool StringParserClass::getDataBetweenTags(char * pDataToSearchThru, vector<stri
 
 	cout << "lenOfTags: " << lenOfTags << endl;
 	// iterate through the data, subtract length of tags to not go out of bounds
-	for (int i = 0; i <= strlen(pDataToSearchThru) - lenOfTags; i++)
+
+	bool foundStartTag = false;
+	for (int i = 0; i <= strlen(pDataToSearchThru) - strlen(this->pEndTag); i++)
 	{
 		//cout << "pData: " << pDataToSearchThru[i] << endl;
 		// check if current char is equal to pStartTag[0]
 		if (pDataToSearchThru[i] == this->pStartTag[0])
 		{
+
 			// keep track of if tag was found
-			bool foundStartTag = true;
+			bool foundPotentialStartTag = true;
 
 			// parse through data for length of tag
 			for (int j = 1; j < strlen(pStartTag); j++)
@@ -58,19 +61,58 @@ bool StringParserClass::getDataBetweenTags(char * pDataToSearchThru, vector<stri
 				// if 1 val pt is not equal, then not a start tag
 				if (pDataToSearchThru[i + j] != pStartTag[j])
 				{
-					foundStartTag = false;
+					foundPotentialStartTag = false;
 				}
 			}
 
-			if (foundStartTag == true)
+			if (foundPotentialStartTag == true)
 			{
+				foundStartTag = true;
 				// should be the 1st char of the data, or if no data, 1st char of pEndTag
 				startOfData = i + strlen(pStartTag);
+
+				cout << "Start of Data: " << startOfData << endl;
+			}
+		}
+
+		//cout << "pData: " << pDataToSearchThru[i] << endl;
+		// check if current char is equal to pEndTag[0]
+		if (foundStartTag && pDataToSearchThru[i] == this->pEndTag[0])
+		{
+			// keep track of if tag was found
+			bool foundEndTag = true;
+
+			// parse through data for length of tag
+			for (int j = 1; j < strlen(pEndTag); j++)
+			{
+				// if 1 val pt is not equal, then not a start tag
+				if (pDataToSearchThru[i + j] != pEndTag[j])
+				{
+					foundEndTag = false;
+				}
 			}
 
-			// TODO: Find pEndTag
-			// TODO: implement error messages
+			if (foundEndTag == true)
+			{
+				// should be the end of data
+				endOfData = i;
+				// get the string of data
+				string data = &pDataToSearchThru[startOfData];
+				data = data.substr(0, endOfData-startOfData);
+				// if data is not null
+				if (data.size() != 0)
+					myVector.push_back(data);
+				else
+					this->lastError = ERROR_DATA_NULL;
+
+				foundStartTag = false;
+				foundEndTag = false;
+
+				cout << "End of Data: " << endOfData << endl;
+			}
 		}
+
+		// TODO: implement rest of error messages
 	}
 
 	return false;
