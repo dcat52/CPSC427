@@ -24,7 +24,9 @@ void foreach(std::vector<std::string> myVector){
 
 int main(){
 	//TODO open file, if not there ask for a different file or exit
-	
+	KP_FileReaderClass::FileReader fr;
+	std::string contents;
+	fr.getFileContents(TEST_FILE_NAME, contents);
 
 	//got file data, this is a bogus time and memory wasting step
 	//whose sole purpose is to provide a way to pass
@@ -39,19 +41,13 @@ int main(){
 	KP_StringParserClass::StringParserClass sp;
 
 	//TODO set the tags
-	sp.setTags("<html>", "</html>");
+	//sp.setTags("<html>", "</html>");
 
 	//TODO pull out the data
-	sp.getDataBetweenTags("<html>big data</html>21 cause dats 35<html></html><html>big data</html>", myLine);
-	
-	//TODO create an instance of the file reader
-	KP_FileReaderClass::FileReader fr;
-
-	//
+	sp.getDataBetweenTags(&contents[0], myLine);
 
 	//TODO  write to file and to screen
-	for(int i = 0; i < myLine.size(); i++)	
-		std::cout << myLine.at(i) << std::endl;
+	foreach(myLine);
 
 }
 

@@ -25,7 +25,7 @@ int FileReader::getFileContents(const std::string filename, std::string & conten
 
 	//if file does not open then...
 	while (!myFile.is_open()) {
-		cout << ENTER_FN_OR_X;
+		cout << ENTER_FN_OR_X << endl;
 		string fileN;
 		cin >> fileN;
 		//filename = &fileN;
@@ -37,8 +37,6 @@ int FileReader::getFileContents(const std::string filename, std::string & conten
 
 		myFile.open(filename);
 	}
-
-	
 
 	string line;
 
