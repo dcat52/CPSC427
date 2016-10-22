@@ -45,13 +45,10 @@ bool StringParserClass::getDataBetweenTags(char * pDataToSearchThru, vector<stri
 	int startOfData = UNINITIALIZED;
 	int endOfData = UNINITIALIZED;
 
-	cout << "lenOfTags: " << lenOfTags << endl;
 	// iterate through the data, subtract length of tags to not go out of bounds
-
 	bool foundStartTag = false;
 	for (int i = 0; i <= strlen(pDataToSearchThru) - strlen(this->pEndTag); i++)
 	{
-		//cout << "pData: " << pDataToSearchThru[i] << endl;
 		// check if current char is equal to pStartTag[0]
 		if (pDataToSearchThru[i] == this->pStartTag[0])
 		{
@@ -74,12 +71,9 @@ bool StringParserClass::getDataBetweenTags(char * pDataToSearchThru, vector<stri
 				foundStartTag = true;
 				// should be the 1st char of the data, or if no data, 1st char of pEndTag
 				startOfData = i + strlen(pStartTag);
-
-				cout << "Start of Data: " << startOfData << endl;
 			}
 		}
 
-		//cout << "pData: " << pDataToSearchThru[i] << endl;
 		// check if current char is equal to pEndTag[0]
 		if (foundStartTag && pDataToSearchThru[i] == this->pEndTag[0])
 		{
@@ -111,8 +105,6 @@ bool StringParserClass::getDataBetweenTags(char * pDataToSearchThru, vector<stri
 
 				foundStartTag = false;
 				foundEndTag = false;
-
-				cout << "End of Data: " << endOfData << endl;
 			}
 		}
 
