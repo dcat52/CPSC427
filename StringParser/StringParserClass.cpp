@@ -1,4 +1,9 @@
-
+/*
+* StringParserClass.cpp
+* Davis Catherman
+* Kimberly Jimenez
+*
+*/
 #include <string>
 #include "..\Include\stringparserClass.h"
 #include "..\Include\FileReader.h"
@@ -8,24 +13,28 @@
 using namespace std;
 using namespace KP_StringParserClass;
 
+//constructor for StringParserClass
 StringParserClass::StringParserClass(void)
 {
-	setTags(START_TAG, END_TAG);
+	setTags(START_TAG, END_TAG);		//sets tags
 	areTagsSet = false;
-	lastError = ERROR_NO_ERROR;
+	lastError = ERROR_NO_ERROR;			//returns last error that is received
 }
 
+//destructor
 StringParserClass::~StringParserClass(void)
 {
 	// be safe
 	cleanup();
 }
 
+//returns last error that is thrown
 int StringParserClass::getLastError()
 {
 	return lastError;
 }
 
+//method checks if both the start and end tags are set
 bool StringParserClass::setTags(const char * pStartTag, const char * pEndTag)
 {
 	this->pStartTag = (char*)pStartTag;
@@ -34,8 +43,11 @@ bool StringParserClass::setTags(const char * pStartTag, const char * pEndTag)
 }
 
 // TODO: Test This Method
+//method will read the data that is between the start and end tags if the data is not in between the start and end
+//tags then it is nit read
 bool StringParserClass::getDataBetweenTags(char * pDataToSearchThru, vector<string>& myVector)
 {
+	//if no tags are set then return false
 	if (strlen(this->pStartTag) == 0 || strlen(this->pEndTag) == 0) {
 		this->lastError = ERROR_TAGS_NULL;
 		return false;
@@ -66,6 +78,7 @@ bool StringParserClass::getDataBetweenTags(char * pDataToSearchThru, vector<stri
 				}
 			}
 
+			//if the start of a potential tag is found then 
 			if (foundPotentialStartTag == true)
 			{
 				foundStartTag = true;
@@ -89,7 +102,8 @@ bool StringParserClass::getDataBetweenTags(char * pDataToSearchThru, vector<stri
 					foundEndTag = false;
 				}
 			}
-
+	
+			//if an end tag is found then add the data that is found in between the tags into a vector
 			if (foundEndTag == true)
 			{
 				// should be the end of data
@@ -111,6 +125,7 @@ bool StringParserClass::getDataBetweenTags(char * pDataToSearchThru, vector<stri
 		// TODO: implement rest of error messages
 	}
 
+	//if there is data in the vector then return true
 	if(myVector.size() != 0)
 		return true;
 	return false;
