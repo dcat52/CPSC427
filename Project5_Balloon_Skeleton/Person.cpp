@@ -17,59 +17,60 @@ bool Person::draw(std::vector<std::string> &myScreenVector){			//pure virtual, a
 	bLegChangePosition = !bLegChangePosition;
 	switch(dir){
 	case LEFT:
-		myScreenVector[17].replace(getX(), 100, "   \\\\\\\\|//// ");
-		myScreenVector[18].replace(getX(), 100, "    |~ ////  ");
-		myScreenVector[19].replace(getX(), 100, "    |O  //   ");
-		myScreenVector[20].replace(getX(), 100, "   <    |    ");
-		myScreenVector[21].replace(getX(), 100, "    |_/ |    ");
-		myScreenVector[22].replace(getX(), 100, "--o |__/     ");
-		myScreenVector[23].replace(getX(), 100, "   \\__|      ");
-		myScreenVector[24].replace(getX(), 100, "      |      ");
-		myScreenVector[25].replace(getX(), 100, "     /|      ");
-		myScreenVector[26].replace(getX(), 100, "   \\/_|      ");
-		myScreenVector[27].replace(getX(), 100, "      |      ");
-		myScreenVector[28].replace(getX(), 100, "    \\||      ");
+		myScreenVector[myScreenVector.size()-12].replace(getX(), 70, "   \\\\\\\\|//// ");
+		myScreenVector[myScreenVector.size()-11].replace(getX(), 70, "    |~ ////  ");
+		myScreenVector[myScreenVector.size()-10].replace(getX(), 70, "    |O  //   ");
+		myScreenVector[myScreenVector.size()-9].replace(getX(), 70, "   <    |    ");
+		myScreenVector[myScreenVector.size()-8].replace(getX(), 70, "    |_/ |    ");
+		myScreenVector[myScreenVector.size()-7].replace(getX(), 70, "--o |__/     ");
+		myScreenVector[myScreenVector.size()-6].replace(getX(), 70, "   \\__|      ");
+		myScreenVector[myScreenVector.size()-5].replace(getX(), 70, "      |      ");
+		myScreenVector[myScreenVector.size()-4].replace(getX(), 70, "     /|      ");
+		myScreenVector[myScreenVector.size()-3].replace(getX(), 70, "   \\/_|      ");
+		myScreenVector[myScreenVector.size()-2].replace(getX(), 70, "      |      ");
+		myScreenVector[myScreenVector.size()-1].replace(getX(), 70, "    \\||      ");
 		break;
 
 	case RIGHT:
-		myScreenVector[17].replace(getX(), 100, " \\\\\\\\|////   ");
-		myScreenVector[18].replace(getX(), 100, "  \\\\\\\\ ~|    ");
-		myScreenVector[19].replace(getX(), 100, "   \\\\  O|    ");
-		myScreenVector[20].replace(getX(), 100, "    |    >   ");
-		myScreenVector[21].replace(getX(), 100, "    | \\_|    ");
-		myScreenVector[22].replace(getX(), 100, "     \\__| o--");
-		myScreenVector[23].replace(getX(), 100, "      |__/   ");
-		myScreenVector[24].replace(getX(), 100, "      |      ");
-		myScreenVector[25].replace(getX(), 100, "      |\\     ");
-		myScreenVector[26].replace(getX(), 100, "      |_\\/    ");
-		myScreenVector[27].replace(getX(), 100, "      |     ");
-		myScreenVector[28].replace(getX(), 100, "      ||/    ");
+		myScreenVector[myScreenVector.size()-12].replace(getX(), 100, " \\\\\\\\|////   ");
+		myScreenVector[myScreenVector.size()-11].replace(getX(), 100, "  \\\\\\\\ ~|    ");
+		myScreenVector[myScreenVector.size()-10].replace(getX(), 100, "   \\\\  O|    ");
+		myScreenVector[myScreenVector.size()-9].replace(getX(), 100, "    |    >   ");
+		myScreenVector[myScreenVector.size()-8].replace(getX(), 100, "    | \\_|    ");
+		myScreenVector[myScreenVector.size()-7].replace(getX(), 100, "     \\__| o--");
+		myScreenVector[myScreenVector.size()-6].replace(getX(), 100, "      |__/   ");
+		myScreenVector[myScreenVector.size()-5].replace(getX(), 100, "      |      ");
+		myScreenVector[myScreenVector.size()-4].replace(getX(), 100, "      |\\     ");
+		myScreenVector[myScreenVector.size()-3].replace(getX(), 100, "      |_\\/    ");
+		myScreenVector[myScreenVector.size()-2].replace(getX(), 100, "      |     ");
+		myScreenVector[myScreenVector.size()-1].replace(getX(), 100, "      ||/    ");
 		break;
 
 	case UP:
-		myScreenVector[19].replace(getX(), 100, " \\\\\\\\\\|///// ");
-		myScreenVector[20].replace(getX(), 100, "  \\\\|\\ /|//  ");
-		myScreenVector[21].replace(getX(), 100, "   \\|O O|/   ");
-		myScreenVector[22].replace(getX(), 100, "    | ^ |    ");
-		myScreenVector[23].replace(getX(), 100, " \\  | - |  / ");
-		myScreenVector[24].replace(getX(), 100, "  o |___| o  ");
-		myScreenVector[25].replace(getX(), 100, "   \\__|__/   ");
-		myScreenVector[26].replace(getX(), 100, "      |     ");
-		myScreenVector[27].replace(getX(), 100, "      |     ");
-		myScreenVector[28].replace(getX(), 100, "     _|_     ");
+		myScreenVector[myScreenVector.size()-10].replace(getX(), 100, " \\\\\\\\\\|///// ");
+		myScreenVector[myScreenVector.size()-9].replace(getX(), 100, "  \\\\|\\ /|//  ");
+		myScreenVector[myScreenVector.size()-8].replace(getX(), 100, "   \\|O O|/   ");
+		myScreenVector[myScreenVector.size()-7].replace(getX(), 100, "    | ^ |    ");
+		myScreenVector[myScreenVector.size()-6].replace(getX(), 100, " \\  | - |  / ");
+		myScreenVector[myScreenVector.size()-5].replace(getX(), 100, "  o |___| o  ");
+		myScreenVector[myScreenVector.size()-4].replace(getX(), 100, "   \\__|__/   ");
+		myScreenVector[myScreenVector.size()-3].replace(getX(), 100, "      |     ");
+		myScreenVector[myScreenVector.size()-2].replace(getX(), 100, "      |     ");
+		myScreenVector[myScreenVector.size()-1].replace(getX(), 100, "     _|_     ");
 		break;
 
 	case DOWN:
-		myScreenVector[19].replace(getX(), 100, " \\\\\\\\\\|///// ");
-		myScreenVector[20].replace(getX(), 100, "  \\\\|~ ~|//  ");
-		myScreenVector[21].replace(getX(), 100, "   \\|O O|/   ");
-		myScreenVector[22].replace(getX(), 100, "    | ^ |    ");
-		myScreenVector[23].replace(getX(), 100, "    | v |    ");
-		myScreenVector[24].replace(getX(), 100, "    |___|    ");
-		myScreenVector[25].replace(getX(), 100, "    __|__    ");
-		myScreenVector[26].replace(getX(), 100, "    \\ | /    ");
-		myScreenVector[27].replace(getX(), 100, "     0|0     ");
-		myScreenVector[28].replace(getX(), 100, "     _|_     ");
+	case NO_DIR:
+		myScreenVector[myScreenVector.size()-10].replace(getX(), 100, " \\\\\\\\\\|///// ");
+		myScreenVector[myScreenVector.size()-9].replace(getX(), 100, "  \\\\|~ ~|//  ");
+		myScreenVector[myScreenVector.size()-8].replace(getX(), 100, "   \\|O O|/   ");
+		myScreenVector[myScreenVector.size()-7].replace(getX(), 100, "    | ^ |    ");
+		myScreenVector[myScreenVector.size()-6].replace(getX(), 100, "    | v |    ");
+		myScreenVector[myScreenVector.size()-5].replace(getX(), 100, "    |___|    ");
+		myScreenVector[myScreenVector.size()-4].replace(getX(), 100, "    __|__    ");
+		myScreenVector[myScreenVector.size()-3].replace(getX(), 100, "    \\ | /    ");
+		myScreenVector[myScreenVector.size()-2].replace(getX(), 100, "     0|0     ");
+		myScreenVector[myScreenVector.size()-1].replace(getX(), 100, "     _|_     ");
 		break;
 
 	}
