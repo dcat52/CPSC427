@@ -72,6 +72,11 @@ int main() {
 		case 'B':
 			myController.setControllerState(RUN);
 			break;
+		case 'x':
+		case 'X':
+			// safely exit the program
+			exit(EXIT_SUCCESS);
+			break;
 		}
 	}
 

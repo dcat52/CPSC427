@@ -1,0 +1,9 @@
+May need to delallocate memory in code below
+
+	(Project5_Balloon.cpp)
+	case 'x':
+	case 'X':
+		// safely exit the program
+		exit(EXIT_SUCCESS);
+		break;
+	}
