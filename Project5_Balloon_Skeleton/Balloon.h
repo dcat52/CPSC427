@@ -16,5 +16,6 @@ private:
 	int iHowLongBeforeFall;
 	int iTimeSinceCreation;
 	int iLastMoveTime;
+	int balloonPopTime;
 };
 

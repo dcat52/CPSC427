@@ -16,7 +16,7 @@ enum BALLOON_STATE{IS_BALLOON, IS_BEE};
 enum CONTROLLER_STATE{SHOW_INTRO,RESET,RUN};
 
 //start off slow
-const SPEED CONTROLLER_SPEED = SLOW;
+const SPEED CONTROLLER_SPEED = MEDIUM;
 
 struct location{
 	int x;
@@ -58,3 +58,4 @@ const int QUANTUM_WAIT_TIME			= 5;
 const int BALLOON_APPEAR_BAND_SIZE	= 5;
 
 const int BALLOON_MOVE_WAIT_TIME = 12;
+const int BALLOON_POP_DISPLAY = 5;

@@ -13,6 +13,7 @@ Balloon::Balloon(sizeofScreenBuffer myScreenBufferSize,location myLoc,int iHowLo
 	this->iTimeSinceCreation = 0;
 	this->iLastMoveTime = 0;
 	this->iTimeBetweenMovements = BALLOON_MOVE_WAIT_TIME;
+	this->balloonPopTime = 0;
 }
 
 Balloon::~Balloon(void)
@@ -33,7 +34,13 @@ bool Balloon::draw(std::vector<std::string> &myScreenVector){			//pure virtual, 
 			myScreenVector[getY() + 4].replace(getX(), BALLOON_WIDTH, "  /   \\");
 			myScreenVector[getY() + 5].replace(getX(), BALLOON_WIDTH, "    |  ");
 			myScreenVector[getY() + 6].replace(getX(), BALLOON_WIDTH, "       ");
-			bDeleteMe = true;
+
+			if (balloonPopTime == 0) {
+				balloonPopTime = iTimeSinceCreation;
+			}
+			if (iTimeSinceCreation - balloonPopTime >= BALLOON_POP_DISPLAY) {
+				bDeleteMe = true;
+			}
 			break;
 			
 		case BALLOON_CLOBBERED_COSMO:
@@ -44,7 +51,13 @@ bool Balloon::draw(std::vector<std::string> &myScreenVector){			//pure virtual, 
 			myScreenVector[getY() + 4].replace(getX(), BALLOON_WIDTH, "* * * *");
 			myScreenVector[getY() + 5].replace(getX(), BALLOON_WIDTH, " *   * ");
 			myScreenVector[getY() + 6].replace(getX(), BALLOON_WIDTH, "   *   ");
-			bDeleteMe = true;
+
+			if (balloonPopTime == 0) {
+				balloonPopTime = iTimeSinceCreation;
+			}
+			if (iTimeSinceCreation - balloonPopTime >= BALLOON_POP_DISPLAY) {
+				bDeleteMe = true;
+			}
 			break;
 		
 		case NO:
