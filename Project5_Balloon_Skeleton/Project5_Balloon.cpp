@@ -24,6 +24,7 @@ int main() {
 	/* get the width and height of the console window*/
 	CONSOLE_SCREEN_BUFFER_INFO csbi;
 	if ( GetConsoleScreenBufferInfo(GetStdHandle(STD_OUTPUT_HANDLE), &csbi)){
+		
 		width = csbi.dwSize.X;
 		height = csbi.srWindow.Bottom - csbi.srWindow.Top;
 	}
