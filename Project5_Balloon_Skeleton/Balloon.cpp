@@ -19,7 +19,7 @@ Balloon::~Balloon(void)
 bool Balloon::draw(std::vector<std::string> &myScreenVector){			//pure virtual, abstract base class, MUST BE DEFINED BY DERIVED CLASSES	
 	bool bDeleteMe = false;
 
-	//col = NO;
+	col = NO;
 
 	switch(col) {
 		case COSMO_POPPED:
