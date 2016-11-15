@@ -98,7 +98,7 @@ void Controller::renderScoresToScreenbuffer(){
 }
 void Controller::createBalloon(){
 	//BALLOON CREATION RATE based on difficulty
-	if (--iTimeBetweenBalloonCreation !=0)
+	if (--iTimeBetweenBalloonCreation != 0)
 		return;
 	iTimeBetweenBalloonCreation = QUANTUM_WAIT_TIME + QUANTUM_WAIT_TIME*(FAST-mSpeed);		//if set to fast last term drops to 0 then balloons are created quickly
 
@@ -139,6 +139,7 @@ COLLISION Controller::hasCollidedWithCosmo(Balloon pBalloon){
 		//balloon hit cosmo on head or back or cosmo was standing with arms on hips 
 		scorekeeper.incScoreBalloon();
 		return BALLOON_CLOBBERED_COSMO;
+		
 	}
 	else
 		return NO;

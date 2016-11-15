@@ -45,6 +45,17 @@ bool Balloon::draw(std::vector<std::string> &myScreenVector){			//pure virtual, 
 			break;
 		
 		case NO:
+			
+			if (getY() + BALLOON_HEIGHT + spd < myScreenBufferSize.y)
+			{
+				setY(getY() + spd);
+				setLocation(myLoc);
+			}
+			else
+			{
+				bDeleteMe = true;
+			}
+
 			myScreenVector[getY() + 0].replace(getX(), getX() + BALLOON_WIDTH, "  ___  ");
 			myScreenVector[getY() + 1].replace(getX(), getX() + BALLOON_WIDTH, " //\\ \\ ");
 			myScreenVector[getY() + 2].replace(getX(), getX() + BALLOON_WIDTH, "| \\/  |");
@@ -53,10 +64,6 @@ bool Balloon::draw(std::vector<std::string> &myScreenVector){			//pure virtual, 
 			myScreenVector[getY() + 5].replace(getX(), getX() + BALLOON_WIDTH,  "   |   ");
 			myScreenVector[getY() + 6].replace(getX(), getX() + BALLOON_WIDTH,  "   |   ");
 
-			if (myLoc.y + BALLOON_HEIGHT + spd < myScreenBufferSize.y) {
-				myLoc.y = myLoc.y + spd;
-				setLocation(myLoc);
-			}
 			break;
 	}
 
