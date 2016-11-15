@@ -16,7 +16,7 @@ enum BALLOON_STATE{IS_BALLOON, IS_BEE};
 enum CONTROLLER_STATE{SHOW_INTRO,RESET,RUN};
 
 //start off slow
-const SPEED CONTROLLER_SPEED = MEDIUM;
+const SPEED CONTROLLER_SPEED = SLOW;
 
 struct location{
 	int x;
