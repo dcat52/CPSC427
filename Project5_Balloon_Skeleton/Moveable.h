@@ -13,6 +13,8 @@ public:
 
 	inline int getX(){return myLoc.x;};
 	inline int getY(){return myLoc.y;};
+	inline void setX(int x) { myLoc.x = x; };
+	inline void setY(int y) { myLoc.y = y; };
 	inline DIRECTION getDir(){return dir;};
 	void setCollidedState(COLLISION col);
 	inline void setLocation(location myLoc){this->myLoc = myLoc;};

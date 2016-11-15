@@ -2,8 +2,6 @@
 #include "Moveable.h"
 #include "Controller.h"
 
-//std::vector<Moveable*> balloons;
-
 Balloon::Balloon(sizeofScreenBuffer myScreenBufferSize,location myLoc,int iHowLongBeforeFall, SPEED spd, DIRECTION dir ):Moveable(myScreenBufferSize,myLoc,spd, dir)
 {
 	this->myScreenBufferSize = myScreenBufferSize;
@@ -20,6 +18,8 @@ Balloon::~Balloon(void)
 //returns true if its time to delete this balloon
 bool Balloon::draw(std::vector<std::string> &myScreenVector){			//pure virtual, abstract base class, MUST BE DEFINED BY DERIVED CLASSES	
 	bool bDeleteMe = false;
+
+	//col = NO;
 
 	switch(col) {
 		case COSMO_POPPED:
@@ -44,14 +44,19 @@ bool Balloon::draw(std::vector<std::string> &myScreenVector){			//pure virtual, 
 			bDeleteMe = true;
 			break;
 		
-		case 0:
+		case NO:
 			myScreenVector[getY() + 0].replace(getX(), getX() + BALLOON_WIDTH, "  ___  ");
 			myScreenVector[getY() + 1].replace(getX(), getX() + BALLOON_WIDTH, " //\\ \\ ");
 			myScreenVector[getY() + 2].replace(getX(), getX() + BALLOON_WIDTH, "| \\/  |");
 			myScreenVector[getY() + 3].replace(getX(), getX() + BALLOON_WIDTH, " \\   / ");
 			myScreenVector[getY() + 4].replace(getX(), getX() + BALLOON_WIDTH, "  \\ /  ");
-			myScreenVector[getY() + 5].replace(getX(), getX() + BALLOON_WIDTH, "   |   ");
-			myScreenVector[getY() + 6].replace(getX(), getX() + BALLOON_WIDTH, "   |   ");
+			myScreenVector[getY() + 5].replace(getX(), getX() + BALLOON_WIDTH,  "   |   ");
+			myScreenVector[getY() + 6].replace(getX(), getX() + BALLOON_WIDTH,  "   |   ");
+
+			if (myLoc.y + BALLOON_HEIGHT + spd < myScreenBufferSize.y) {
+				myLoc.y = myLoc.y + spd;
+				setLocation(myLoc);
+			}
 			break;
 	}
 

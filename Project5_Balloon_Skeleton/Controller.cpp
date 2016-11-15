@@ -67,7 +67,6 @@ void Controller::draw(){
 
 		//render cosmo to screenbuffer
 		cosmo.draw(myScreenVector);
-
 		//render balloons to screenbuffer
 		std::vector<Balloon>::iterator myIter = myBalloons.begin();
 		while ( myIter != myBalloons.end()){
@@ -79,7 +78,9 @@ void Controller::draw(){
 			if ( myIter->draw(myScreenVector))
 				myIter = myBalloons.erase(myIter);
 			else
+			{
 				++myIter;
+			}
 		}
 		//show score if keeping
 		renderScoresToScreenbuffer();
@@ -102,7 +103,7 @@ void Controller::createBalloon(){
 	iTimeBetweenBalloonCreation = QUANTUM_WAIT_TIME + QUANTUM_WAIT_TIME*(FAST-mSpeed);		//if set to fast last term drops to 0 then balloons are created quickly
 
 	//LOCATION  number between 0 and max balloon size for location
-	int ilocx = rand()%(myScreenBufferSize.x -BALLOON_WIDTH);
+	int ilocx = rand()%(myScreenBufferSize.x - BALLOON_WIDTH);
 	int ilocy = rand()%BALLOON_APPEAR_BAND_SIZE;	//anywhere withen first 5 lines
 	location myLoc(ilocx, ilocy);
 
@@ -114,6 +115,7 @@ void Controller::createBalloon(){
 
  	//TODO add it to a single vector that tracks balloons terrible balloons and anvils
 	Balloon aBalloon(myScreenBufferSize,myLoc,iHowLongBeforeFall,iBalloonSpeed);	
+	myBalloons.push_back(aBalloon);
 }
 
 
@@ -122,13 +124,14 @@ COLLISION Controller::hasCollidedWithCosmo(Balloon pBalloon){
 	int x = cosmo.getX() - pBalloon.getX();
 	int y = cosmo.getY() - pBalloon.getY();
 	double distance = sqrt(x*x + y*y);
-	if (distance <= mCollisionDistance){
+
+	if (distance <= mCollisionDistance) {
 		//nows the time to see where cosmo was hit
 		//-on head the balloon wins
 		//-on side with needle(s) cosmo wins
 		DIRECTION dir = cosmo.getDir();
 
-		if (dir == UP || (x>0 && dir==LEFT) || (x<0 && dir==RIGHT)){
+		if (dir == UP || (x > 0 && dir == LEFT) || (x < 0 && dir == RIGHT)) {
 			scorekeeper.incScoreCosmo();
 			return COSMO_POPPED;
 		}
