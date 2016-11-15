@@ -21,39 +21,39 @@ Balloon::~Balloon(void)
 bool Balloon::draw(std::vector<std::string> &myScreenVector){			//pure virtual, abstract base class, MUST BE DEFINED BY DERIVED CLASSES	
 	bool bDeleteMe = false;
 
-	/*switch() {
-	case COSMO_POPPED:
-			"       ");
-			"    |  ");
-			"  \\   /");
-			" - pop-");
-			"  /   \\");
-			"    |  ");
-			"       ");
+	switch(col) {
+		case COSMO_POPPED:
+			myScreenVector[getY() + 0].replace(getX(), getX() + BALLOON_WIDTH, "       ");
+			myScreenVector[getY() + 1].replace(getX(), getX() + BALLOON_WIDTH, "    |  ");
+			myScreenVector[getY() + 2].replace(getX(), getX() + BALLOON_WIDTH, "  \\   /");
+			myScreenVector[getY() + 3].replace(getX(), getX() + BALLOON_WIDTH, " - pop-");
+			myScreenVector[getY() + 4].replace(getX(), getX() + BALLOON_WIDTH, "  /   \\");
+			myScreenVector[getY() + 5].replace(getX(), getX() + BALLOON_WIDTH, "    |  ");
+			myScreenVector[getY() + 6].replace(getX(), getX() + BALLOON_WIDTH, "       ");
 			bDeleteMe = true;
 			break;
-
+			
+		case BALLOON_CLOBBERED_COSMO:
+			myScreenVector[getY() + 0].replace(getX(), getX() + BALLOON_WIDTH, "   *   ");
+			myScreenVector[getY() + 1].replace(getX(), getX() + BALLOON_WIDTH, " *   * ");
+			myScreenVector[getY() + 2].replace(getX(), getX() + BALLOON_WIDTH, "* * * *");
+			myScreenVector[getY() + 3].replace(getX(), getX() + BALLOON_WIDTH, "*BOOM *");
+			myScreenVector[getY() + 4].replace(getX(), getX() + BALLOON_WIDTH, "* * * *");
+			myScreenVector[getY() + 5].replace(getX(), getX() + BALLOON_WIDTH, " *   * ");
+			myScreenVector[getY() + 6].replace(getX(), getX() + BALLOON_WIDTH, "   *   ");
+			bDeleteMe = true;
+			break;
 		
-		"   *   ");
-		" *   * ");
-		"* * * *");
-		"*BOOM *");
-		"* * * *");
-		" *   * ");
-		"   *   ");
-		
-		
-
-		
-		"  ___  ");
-		" //\\ \\ ");
-		"| \\/  |");
-		" \\   / ");
-		"  \\ /  ");
-		"   |   ");
-		"   |   ");
-		
-	}*/
+		case 0:
+			myScreenVector[getY() + 0].replace(getX(), getX() + BALLOON_WIDTH, "  ___  ");
+			myScreenVector[getY() + 1].replace(getX(), getX() + BALLOON_WIDTH, " //\\ \\ ");
+			myScreenVector[getY() + 2].replace(getX(), getX() + BALLOON_WIDTH, "| \\/  |");
+			myScreenVector[getY() + 3].replace(getX(), getX() + BALLOON_WIDTH, " \\   / ");
+			myScreenVector[getY() + 4].replace(getX(), getX() + BALLOON_WIDTH, "  \\ /  ");
+			myScreenVector[getY() + 5].replace(getX(), getX() + BALLOON_WIDTH, "   |   ");
+			myScreenVector[getY() + 6].replace(getX(), getX() + BALLOON_WIDTH, "   |   ");
+			break;
+	}
 
 	return bDeleteMe;
 }
