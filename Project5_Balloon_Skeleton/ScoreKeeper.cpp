@@ -17,6 +17,6 @@ ScoreKeeper::~ScoreKeeper(void)
 
 bool ScoreKeeper::getDisplayString(std::string &scoreString){
 	//TODO calculate the score that goes in the display string here
-	scoreString = "TODO-TODO-TODO-TODO-TODO-TODO-TODO-TODO-TODO-TODO-TODO-TODO-TODO-TODO-TODO-TODO-TODO-TODO-TODO-TODO-TODO-TODO-";
+	scoreString = COSMO_SCORE_PREFIX;
 	return true;
 }

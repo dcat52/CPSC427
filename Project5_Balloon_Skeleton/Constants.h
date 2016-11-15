@@ -56,3 +56,5 @@ const int DEFAULT_HEIGHT =24;
 const int MIN_BALLOON_HOVER_TIME	= 60;
 const int QUANTUM_WAIT_TIME			= 5;
 const int BALLOON_APPEAR_BAND_SIZE	= 5;
+
+const int BALLOON_MOVE_WAIT_TIME = 12;

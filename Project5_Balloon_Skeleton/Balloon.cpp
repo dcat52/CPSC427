@@ -10,6 +10,9 @@ Balloon::Balloon(sizeofScreenBuffer myScreenBufferSize,location myLoc,int iHowLo
 	this->spd = spd;
 	this->dir = dir;
 	this->col = NO;
+	this->iTimeSinceCreation = 0;
+	this->iLastMoveTime = 0;
+	this->iTimeBetweenMovements = BALLOON_MOVE_WAIT_TIME;
 }
 
 Balloon::~Balloon(void)
@@ -20,6 +23,7 @@ Balloon::~Balloon(void)
 bool Balloon::draw(std::vector<std::string> &myScreenVector){			//pure virtual, abstract base class, MUST BE DEFINED BY DERIVED CLASSES	
 	bool bDeleteMe = false;
 	col = this->col;
+	iTimeSinceCreation++;
 	switch(col) {
 		case COSMO_POPPED:
 			myScreenVector[getY() + 0].replace(getX(), BALLOON_WIDTH, "       ");
@@ -47,8 +51,12 @@ bool Balloon::draw(std::vector<std::string> &myScreenVector){			//pure virtual, 
 			
 			if (getY() + BALLOON_HEIGHT + spd < myScreenBufferSize.y)
 			{
-				setY(getY() + spd);
-				setLocation(myLoc);
+				if (iHowLongBeforeFall <= iTimeSinceCreation  && iTimeBetweenMovements <= iTimeSinceCreation - iLastMoveTime)
+				{
+					iLastMoveTime = iTimeSinceCreation;
+					setY(getY() + spd);
+					setLocation(myLoc);
+				}
 			}
 			else
 			{
