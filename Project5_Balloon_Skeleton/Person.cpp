@@ -20,23 +20,23 @@ bool Person::draw(std::vector<std::string> &myScreenVector){			//pure virtual, a
 		{
 			myLoc.x = myLoc.x - spd;
 		}
-		myScreenVector[getY() + 0].replace(getX(), PERSON_WIDTH, "   \\\\\\\\|//// ");
-		myScreenVector[getY() + 1].replace(getX(), PERSON_WIDTH,  "    |~ ////  ");
-		myScreenVector[getY() + 2].replace(getX(), PERSON_WIDTH,  "    |O  //   ");
-		myScreenVector[getY() + 3].replace(getX(), PERSON_WIDTH,  "   <    |    ");
-		myScreenVector[getY() + 4].replace(getX(), PERSON_WIDTH,  "    |_/ |    ");
-		myScreenVector[getY() + 5].replace(getX(), PERSON_WIDTH,  "--o |__/      ");
-		myScreenVector[getY() + 6].replace(getX(), PERSON_WIDTH, "   \\__|      ");
-		myScreenVector[getY() + 7].replace(getX(), PERSON_WIDTH,  "      |      ");
+		myScreenVector[getY() + 0].replace(getX(), PERSON_WIDTH+spd, "   \\\\\\\\|//// ");
+		myScreenVector[getY() + 1].replace(getX(), PERSON_WIDTH + spd,  "    |~ ////  ");
+		myScreenVector[getY() + 2].replace(getX(), PERSON_WIDTH + spd,  "    |O  //   ");
+		myScreenVector[getY() + 3].replace(getX(), PERSON_WIDTH + spd,  "   <    |    ");
+		myScreenVector[getY() + 4].replace(getX(), PERSON_WIDTH + spd,  "    |_/ |    ");
+		myScreenVector[getY() + 5].replace(getX(), PERSON_WIDTH + spd,  "--o |__/      ");
+		myScreenVector[getY() + 6].replace(getX(), PERSON_WIDTH + spd, "   \\__|      ");
+		myScreenVector[getY() + 7].replace(getX(), PERSON_WIDTH + spd,  "      |      ");
 		if (bLegChangePosition)
 		{
-			myScreenVector[getY() + 8].replace(getX(), PERSON_WIDTH, "     /|      ");
-			myScreenVector[getY() + 9].replace(getX(), PERSON_WIDTH, "   \\/_|      ");
+			myScreenVector[getY() + 8].replace(getX(), PERSON_WIDTH + spd, "     /|      ");
+			myScreenVector[getY() + 9].replace(getX(), PERSON_WIDTH + spd, "   \\/_|      ");
 		}
 		else
 		{
-			myScreenVector[getY() + 8].replace(getX(), PERSON_WIDTH, "      |      ");
-			myScreenVector[getY() + 9].replace(getX(), PERSON_WIDTH, "    \\||      ");
+			myScreenVector[getY() + 8].replace(getX(), PERSON_WIDTH + spd, "      |      ");
+			myScreenVector[getY() + 9].replace(getX(), PERSON_WIDTH + spd, "    \\||      ");
 		}
 		break;
 

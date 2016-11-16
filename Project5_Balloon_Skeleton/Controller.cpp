@@ -65,6 +65,7 @@ void Controller::draw(){
 	case RUN:
 		//create a balloon if appropriate
 		createBalloon();
+		createAnvil();
 
 		//render cosmo to screenbuffer
 		cosmo.draw(myScreenVector);
@@ -83,6 +84,7 @@ void Controller::draw(){
 				++myIter;
 			}
 		}
+
 		//show score if keeping
 		renderScoresToScreenbuffer();
 		break;
@@ -119,6 +121,27 @@ void Controller::createBalloon(){
 	myBalloons.push_back(aBalloon);
 }
 
+void Controller::createAnvil() {
+	//BALLOON CREATION RATE based on difficulty
+	if (--iTimeBetweenAnvilCreation != 0)
+		return;
+	iTimeBetweenAnvilCreation = QUANTUM_WAIT_TIME*5 + QUANTUM_WAIT_TIME*(FAST - mSpeed);		//if set to fast last term drops to 0 then balloons are created quickly
+
+																								//LOCATION  number between 0 and max balloon size for location
+	int ilocx = rand() % (myScreenBufferSize.x - ANVIL_WIDTH);
+	int ilocy = rand() % ANVIL_APPEAR_BAND_SIZE;	//anywhere withen first 5 lines
+	location myLoc(ilocx, ilocy);
+
+	//HOW LONG BEFORE IT FALLS
+	int iHowLongBeforeFall = ((FAST - mSpeed)*QUANTUM_WAIT_TIME);
+
+	//SPEED OF FALL
+	SPEED iAnvilSpeed = (SPEED)((rand() % mSpeed) + 1);	//make sure this falls between SLOW=1 and FAST=4
+
+	//TODO add it to a single vector that tracks balloons terrible balloons and anvils
+	Anvil aAnvil(myScreenBufferSize, myLoc, iHowLongBeforeFall, iAnvilSpeed);
+	myAnvils.push_back(aAnvil);
+}
 
 COLLISION Controller::hasCollidedWithCosmo(Balloon pBalloon){
 	//get the x separation 

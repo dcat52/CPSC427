@@ -16,6 +16,6 @@ private:
 	int iHowLongBeforeFall;
 	int iTimeSinceAnvilCreation;
 	int iLastMoveTime;
-	int anvilPopTime;
+	int anvilOuchTime;
 };
 

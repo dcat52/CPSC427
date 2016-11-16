@@ -3,6 +3,7 @@
 #include "constants.h"
 #include "person.h"
 #include "balloon.h"
+#include "Anvil.h"
 #include "scorekeeper.h"
 #include "instructions.h"
 
@@ -16,6 +17,7 @@ public:
 	//render the scene
 	void draw();
 	void createBalloon();
+	void createAnvil();
 
 	//change game speed.
 	inline void setSpeed(SPEED speed){mSpeed = speed;};
@@ -54,6 +56,8 @@ private:
 
 	//all of our balloons not polymorphic though
 	std::vector<Balloon> myBalloons;
+	//all of our anvils not polymorphic though
+	std::vector<Anvil> myAnvils;
 
 	//cosmo the person
 	Person cosmo;

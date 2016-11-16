@@ -47,6 +47,8 @@ const int PERSON_WIDTH		= 13;
 const int PERSON_HEIGHT		= 10;
 const int BEE_WIDTH			= 5;
 const int BEE_HEIGHT		= 3;
+const int ANVIL_WIDTH = 10;
+const int ANVIL_HEIGHT = 5;
 
 //console defaults, pure guess
 const int DEFAULT_WIDTH  =80;
@@ -60,10 +62,7 @@ const int BALLOON_APPEAR_BAND_SIZE	= 5;
 const int BALLOON_MOVE_WAIT_TIME = 12;
 const int BALLOON_POP_DISPLAY = 5;
 
-//wait times for at keast this many cycles
-const int MIN_ANVIL_HOVER_TIME		= 30;
-const int QUANTUM_ANVIL_WAIT_TIME	= 120;
-const int ANVIL_APPEAR_BAND_SIZE	= 120;
+const int ANVIL_APPEAR_BAND_SIZE	= 5;
 
-const int ANVIL_MOVE_WAIT_TIME		= 10;
-const int ANVIL_DISPLAY_TIME		= 5;
+const int ANVIL_MOVE_WAIT_TIME = 5;
+const int ANVIL_OUCH_DISPLAY = 5;
