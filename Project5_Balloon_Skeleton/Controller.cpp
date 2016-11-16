@@ -11,6 +11,7 @@
 
 Controller::Controller(int width, int height, SPEED speed):myScreenBufferSize(width,height),mSpeed(speed),iTimeBetweenBalloonCreation(QUANTUM_WAIT_TIME +2*speed),cosmo(myScreenBufferSize,location(myScreenBufferSize.x/2, myScreenBufferSize.y-PERSON_HEIGHT),speed),myInstructions(myScreenBufferSize,location(myScreenBufferSize.x/2, myScreenBufferSize.y-PERSON_HEIGHT),speed),mControllerState(SHOW_INTRO)
 {	
+	iTimeBetweenAnvilCreation = 50;
 	initialize();
 
 	//max distance between center of squares for a collision to have occured
@@ -69,10 +70,10 @@ void Controller::draw(){
 		//render cosmo to screenbuffer
 		cosmo.draw(myScreenVector);
 		//render balloons to screenbuffer
-		std::vector<std::unique_ptr<Moveable>>::iterator myIter = myMoveables.begin();
+		std::vector<Moveable*>::iterator myIter = myMoveables.begin();
 		while ( myIter != myMoveables.end()){
 			//collisions
-			COLLISION col = hasCollidedWithCosmo((myIter));
+			COLLISION col = hasCollidedWithCosmo((*myIter));
 			if (col==COSMO_POPPED || col==BALLOON_CLOBBERED_COSMO)
 				(*myIter)->setCollidedState(col);		
 
@@ -93,6 +94,7 @@ void Controller::draw(){
 	for (int i = 0; i < myScreenBufferSize.y; i ++) {
 		std::cout << myScreenVector[i]<<std::endl;
 	}
+	myMoveables;
 }
 
 void Controller::renderScoresToScreenbuffer(){
@@ -116,16 +118,14 @@ void Controller::createBalloon(){
 	SPEED iBalloonSpeed = (SPEED)((rand()%mSpeed) +1);	//make sure this falls between SLOW=1 and FAST=4
 
  	//TODO add it to a single vector that tracks balloons terrible balloons and anvils
-	Balloon aBalloon(myScreenBufferSize,myLoc,iHowLongBeforeFall,iBalloonSpeed);	
-	myBalloons.push_back(aBalloon);
-	myMoveables.push_back(std::unique_ptr<Moveable>(&aBalloon));
+	myMoveables.push_back(new Balloon(myScreenBufferSize, myLoc, iHowLongBeforeFall, iBalloonSpeed));
 }
 
 void Controller::createAnvil() {
-	//BALLOON CREATION RATE based on difficulty
+	//ANVIL CREATION RATE based on difficulty
 	if (--iTimeBetweenAnvilCreation != 0)
 		return;
-	iTimeBetweenAnvilCreation = QUANTUM_WAIT_TIME*5 + QUANTUM_WAIT_TIME*(FAST - mSpeed);		//if set to fast last term drops to 0 then balloons are created quickly
+	iTimeBetweenAnvilCreation = QUANTUM_WAIT_TIME + QUANTUM_WAIT_TIME*(FAST - mSpeed);		//if set to fast last term drops to 0 then balloons are created quickly
 
 																								//LOCATION  number between 0 and max balloon size for location
 	int ilocx = rand() % (myScreenBufferSize.x - ANVIL_WIDTH);
@@ -139,15 +139,15 @@ void Controller::createAnvil() {
 	SPEED iAnvilSpeed = (SPEED)((rand() % mSpeed) + 1);	//make sure this falls between SLOW=1 and FAST=4
 
 	//TODO add it to a single vector that tracks balloons terrible balloons and anvils
-	Anvil aAnvil(myScreenBufferSize, myLoc, iHowLongBeforeFall, iAnvilSpeed);
-	myAnvils.push_back(aAnvil);
-	myMoveables.push_back(std::unique_ptr<Moveable>(&aAnvil));
+	Anvil pAnvil(myScreenBufferSize, myLoc, iHowLongBeforeFall, iAnvilSpeed);
+	myAnvils.push_back(pAnvil);
+	myMoveables.push_back(new Anvil(myScreenBufferSize, myLoc, iHowLongBeforeFall, iAnvilSpeed));
 }
 
-COLLISION Controller::hasCollidedWithCosmo(Moveable *pBalloon){
+COLLISION Controller::hasCollidedWithCosmo(Moveable *pMoveable){
 	//get the x separation 
-	int x = cosmo.getX() - &pBalloon.getX();
-	int y = cosmo.getY() - &pBalloon.getY();
+	int x = cosmo.getX() - (*pMoveable).getX();
+	int y = cosmo.getY() - (*pMoveable).getY();
 	double distance = sqrt(x*x + y*y);
 
 	if (distance <= mCollisionDistance) {

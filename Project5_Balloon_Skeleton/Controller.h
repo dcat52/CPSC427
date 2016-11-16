@@ -28,7 +28,7 @@ public:
 	//TODO you will have to change this function when you replace
 	//myBalloons with a polymorphic vector
 	//test to see if cosmo has run into an object
-	COLLISION hasCollidedWithCosmo(Moveable *pBalloon);
+	COLLISION hasCollidedWithCosmo(Moveable *pMoveable);
 
 	inline void changeCosmoDirection(DIRECTION dir){cosmo.setDirection(dir);};
 
@@ -54,7 +54,7 @@ private:
 	//usually 80 chars wide by 24 lines long
 	std::vector<std::string> myScreenVector;
 
-	std::vector<std::unique_ptr<Moveable>> myMoveables;
+	std::vector<Moveable*> myMoveables;
 
 	//all of our balloons not polymorphic though
 	std::vector<Balloon> myBalloons;

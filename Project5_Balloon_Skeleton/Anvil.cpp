@@ -12,7 +12,7 @@ Anvil::Anvil(sizeofScreenBuffer myScreenBufferSize, location myLoc, int iHowLong
 	this->col = NO;
 	this->iTimeSinceAnvilCreation = 0;
 	this->iLastMoveTime = 0;
-	this->iTimeBetweenMovements = BALLOON_MOVE_WAIT_TIME;
+	this->iTimeBetweenMovements = ANVIL_MOVE_WAIT_TIME;
 	this->anvilOuchTime = 0;
 }
 
@@ -28,10 +28,10 @@ bool Anvil::draw(std::vector<std::string> &myScreenVector) {			//pure virtual, a
 	switch (col) {
 
 	case BALLOON_CLOBBERED_COSMO:
-		myScreenVector[getY() + 0].replace(getX(), BALLOON_WIDTH, "OUCH");
-		myScreenVector[getY() + 1].replace(getX(), BALLOON_WIDTH, "OUCH");
-		myScreenVector[getY() + 2].replace(getX(), BALLOON_WIDTH, "OUCH");
-		myScreenVector[getY() + 3].replace(getX(), BALLOON_WIDTH, "OUCH");
+		myScreenVector[getY() + 0].replace(getX(), 4, "OUCH");
+		myScreenVector[getY() + 1].replace(getX(), 4, "OUCH");
+		myScreenVector[getY() + 2].replace(getX(), 4, "OUCH");
+		myScreenVector[getY() + 3].replace(getX(), 4, "OUCH");
 
 		if (anvilOuchTime == 0) {
 			anvilOuchTime = iTimeSinceAnvilCreation;
@@ -57,11 +57,11 @@ bool Anvil::draw(std::vector<std::string> &myScreenVector) {			//pure virtual, a
 			aDeleteMe = true;
 		}
 
-		myScreenVector[getY() + 0].replace(getX(), BALLOON_WIDTH, "    __   ");
-		myScreenVector[getY() + 1].replace(getX(), BALLOON_WIDTH, "   /__/\\");
-		myScreenVector[getY() + 2].replace(getX(), BALLOON_WIDTH, "  /   \\ \\");
-		myScreenVector[getY() + 3].replace(getX(), BALLOON_WIDTH, " /     \\ \\");
-		myScreenVector[getY() + 4].replace(getX(), BALLOON_WIDTH, "/_______\\/ ");
+		myScreenVector[getY() + 0].replace(getX(), ANVIL_WIDTH, "    __     ");
+		myScreenVector[getY() + 1].replace(getX(), ANVIL_WIDTH, "   /__/\\   ");
+		myScreenVector[getY() + 2].replace(getX(), ANVIL_WIDTH, "  /   \\ \\  ");
+		myScreenVector[getY() + 3].replace(getX(), ANVIL_WIDTH, " /     \\ \\ ");
+		myScreenVector[getY() + 4].replace(getX(), ANVIL_WIDTH, "/_______\\/ ");
 
 		break;
 	}
