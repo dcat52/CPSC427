@@ -1,4 +1,6 @@
 #include <iostream>
+#include <memory>
+#include <iterator>
 #include <stdio.h>
 #include <string>
 #include <time.h>
@@ -41,9 +43,6 @@ void Controller::initialize(){
 	//reset scores
 	scorekeeper.resetScores();
 
-	//TODO clear polymorphic vector that tracks balloons terrible balloons and anvils
-	
-
 	//reset cosmo to middle of screen, standing still
 	cosmo.setLocation(location(myScreenBufferSize.x/2, myScreenBufferSize.y-PERSON_HEIGHT));
 	cosmo.setDirection(NO_DIR);
@@ -70,15 +69,15 @@ void Controller::draw(){
 		//render cosmo to screenbuffer
 		cosmo.draw(myScreenVector);
 		//render balloons to screenbuffer
-		std::vector<Balloon>::iterator myIter = myBalloons.begin();
-		while ( myIter != myBalloons.end()){
+		std::vector<std::unique_ptr<Moveable>>::iterator myIter = myMoveables.begin();
+		while ( myIter != myMoveables.end()){
 			//collisions
-			COLLISION col = hasCollidedWithCosmo((*myIter));
+			COLLISION col = hasCollidedWithCosmo((myIter));
 			if (col==COSMO_POPPED || col==BALLOON_CLOBBERED_COSMO)
-				myIter->setCollidedState(col);		
+				(*myIter)->setCollidedState(col);		
 
-			if ( myIter->draw(myScreenVector))
-				myIter = myBalloons.erase(myIter);
+			if ((*myIter)->draw(myScreenVector))
+				myIter = myMoveables.erase(myIter);
 			else
 			{
 				++myIter;
@@ -119,6 +118,7 @@ void Controller::createBalloon(){
  	//TODO add it to a single vector that tracks balloons terrible balloons and anvils
 	Balloon aBalloon(myScreenBufferSize,myLoc,iHowLongBeforeFall,iBalloonSpeed);	
 	myBalloons.push_back(aBalloon);
+	myMoveables.push_back(std::unique_ptr<Moveable>(&aBalloon));
 }
 
 void Controller::createAnvil() {
@@ -141,12 +141,13 @@ void Controller::createAnvil() {
 	//TODO add it to a single vector that tracks balloons terrible balloons and anvils
 	Anvil aAnvil(myScreenBufferSize, myLoc, iHowLongBeforeFall, iAnvilSpeed);
 	myAnvils.push_back(aAnvil);
+	myMoveables.push_back(std::unique_ptr<Moveable>(&aAnvil));
 }
 
-COLLISION Controller::hasCollidedWithCosmo(Balloon pBalloon){
+COLLISION Controller::hasCollidedWithCosmo(Moveable *pBalloon){
 	//get the x separation 
-	int x = cosmo.getX() - pBalloon.getX();
-	int y = cosmo.getY() - pBalloon.getY();
+	int x = cosmo.getX() - &pBalloon.getX();
+	int y = cosmo.getY() - &pBalloon.getY();
 	double distance = sqrt(x*x + y*y);
 
 	if (distance <= mCollisionDistance) {

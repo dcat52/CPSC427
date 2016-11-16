@@ -21,7 +21,7 @@ Balloon::~Balloon(void)
 }
 
 //returns true if its time to delete this balloon
-bool Balloon::draw(std::vector<std::string> &myScreenVector){			//pure virtual, abstract base class, MUST BE DEFINED BY DERIVED CLASSES	
+bool Balloon::draw(std::vector<std::string> &myScreenVector){ //pure virtual, abstract base class, MUST BE DEFINED BY DERIVED CLASSES	
 	bool bDeleteMe = false;
 	col = this->col;
 	iTimeSinceCreation++;
