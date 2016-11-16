@@ -23,5 +23,7 @@ private:
 	//scores
 	int scoreBalloon;
 	int scoreCosmo;
+
+	int windowX;
 };
 

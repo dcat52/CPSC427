@@ -140,7 +140,6 @@ void Controller::createAnvil() {
 
 	//TODO add it to a single vector that tracks balloons terrible balloons and anvils
 	Anvil pAnvil(myScreenBufferSize, myLoc, iHowLongBeforeFall, iAnvilSpeed);
-	myAnvils.push_back(pAnvil);
 	myMoveables.push_back(new Anvil(myScreenBufferSize, myLoc, iHowLongBeforeFall, iAnvilSpeed));
 }
 

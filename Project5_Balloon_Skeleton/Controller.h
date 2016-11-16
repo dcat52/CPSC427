@@ -56,11 +56,6 @@ private:
 
 	std::vector<Moveable*> myMoveables;
 
-	//all of our balloons not polymorphic though
-	std::vector<Balloon> myBalloons;
-	//all of our anvils not polymorphic though
-	std::vector<Anvil> myAnvils;
-
 	//cosmo the person
 	Person cosmo;
 
