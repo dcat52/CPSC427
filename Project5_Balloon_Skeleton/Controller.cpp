@@ -9,53 +9,53 @@
 #include "Anvil.h"
 #include "ScoreKeeper.h"
 
-Controller::Controller(int width, int height, SPEED speed):myScreenBufferSize(width,height),mSpeed(speed),iTimeBetweenBalloonCreation(QUANTUM_WAIT_TIME +2*speed),cosmo(myScreenBufferSize,location(myScreenBufferSize.x/2, myScreenBufferSize.y-PERSON_HEIGHT),speed),myInstructions(myScreenBufferSize,location(myScreenBufferSize.x/2, myScreenBufferSize.y-PERSON_HEIGHT),speed),mControllerState(SHOW_INTRO)
-{	
+Controller::Controller(int width, int height, SPEED speed) :myScreenBufferSize(width, height), mSpeed(speed), iTimeBetweenBalloonCreation(QUANTUM_WAIT_TIME + 2 * speed), cosmo(myScreenBufferSize, location(myScreenBufferSize.x / 2, myScreenBufferSize.y - PERSON_HEIGHT), speed), myInstructions(myScreenBufferSize, location(myScreenBufferSize.x / 2, myScreenBufferSize.y - PERSON_HEIGHT), speed), mControllerState(SHOW_INTRO)
+{
 	iTimeBetweenAnvilCreation = 50;
 	initialize();
 
 	//max distance between center of squares for a collision to have occured
 	//its corner of one object bounding box touching corner of another
-	double distPersonSquare	 = sqrt(PERSON_WIDTH/2*PERSON_WIDTH/2 + PERSON_HEIGHT/2*PERSON_HEIGHT/2);
-	double distBalloonSquare = sqrt(BALLOON_WIDTH/2*BALLOON_WIDTH/2 + BALLOON_HEIGHT/2*BALLOON_HEIGHT/2);
-	mCollisionDistance		 = distPersonSquare + distBalloonSquare - REQUIRED_OVERLAP;
+	double distPersonSquare = sqrt(PERSON_WIDTH / 2 * PERSON_WIDTH / 2 + PERSON_HEIGHT / 2 * PERSON_HEIGHT / 2);
+	double distBalloonSquare = sqrt(BALLOON_WIDTH / 2 * BALLOON_WIDTH / 2 + BALLOON_HEIGHT / 2 * BALLOON_HEIGHT / 2);
+	mCollisionDistance = distPersonSquare + distBalloonSquare - REQUIRED_OVERLAP;
 
 	/* initialize random seed: */
-	srand ((unsigned int)time(NULL));
+	srand((unsigned int)time(NULL));
 
 	//lets set up the screen buffer with blanks
 	std::string myString;
-	myString.resize(width-SPACE_FOR_CRLF,' ');
-	for (int i = 0; i < height; i ++) {
+	myString.resize(width - SPACE_FOR_CRLF, ' ');
+	for (int i = 0; i < height; i++) {
 		myScreenVector.push_back(myString);
-	}
-}							 
-
-
-void Controller::clearScreen(){
-	std::string myString;
-	myString.resize(myScreenBufferSize.x-SPACE_FOR_CRLF,' ');
-	for (int i = 0; i < myScreenBufferSize.y; i ++) {
-		myScreenVector[i]=myString;
 	}
 }
 
-void Controller::initialize(){
+
+void Controller::clearScreen() {
+	std::string myString;
+	myString.resize(myScreenBufferSize.x - SPACE_FOR_CRLF, ' ');
+	for (int i = 0; i < myScreenBufferSize.y; i++) {
+		myScreenVector[i] = myString;
+	}
+}
+
+void Controller::initialize() {
 	//reset scores
 	scorekeeper.resetScores();
 
 	//reset cosmo to middle of screen, standing still
-	cosmo.setLocation(location(myScreenBufferSize.x/2, myScreenBufferSize.y-PERSON_HEIGHT));
+	cosmo.setLocation(location(myScreenBufferSize.x / 2, myScreenBufferSize.y - PERSON_HEIGHT));
 	cosmo.setDirection(NO_DIR);
 }
 
-void Controller::draw(){
+void Controller::draw() {
 	clearScreen();
 
-	switch(mControllerState){
+	switch (mControllerState) {
 	case RESET:
 		initialize();
-		mControllerState=RUN;
+		mControllerState = RUN;
 		break;
 
 	case SHOW_INTRO:
@@ -70,12 +70,12 @@ void Controller::draw(){
 		//render cosmo to screenbuffer
 		cosmo.draw(myScreenVector);
 		//render balloons to screenbuffer
-		std::vector<Moveable*>::iterator myIter = myMoveables.begin();
-		while ( myIter != myMoveables.end()){
+		std::vector<std::unique_ptr<Moveable>>::iterator myIter = myMoveables.begin();
+		while (myIter != myMoveables.end()) {
 			//collisions
-			COLLISION col = hasCollidedWithCosmo((*myIter));
-			if (col==COSMO_POPPED || col==BALLOON_CLOBBERED_COSMO)
-				(*myIter)->setCollidedState(col);		
+			COLLISION col = hasCollidedWithCosmo(*(*myIter));
+			if (col == COSMO_POPPED || col == BALLOON_CLOBBERED_COSMO)
+				(*myIter)->setCollidedState(col);
 
 			if ((*myIter)->draw(myScreenVector))
 				myIter = myMoveables.erase(myIter);
@@ -91,41 +91,41 @@ void Controller::draw(){
 	}
 
 	//output the screen buffer
-	for (int i = 0; i < myScreenBufferSize.y; i ++) {
-		std::cout << myScreenVector[i]<<std::endl;
+	for (int i = 0; i < myScreenBufferSize.y; i++) {
+		std::cout << myScreenVector[i] << std::endl;
 	}
-	myMoveables;
 }
 
-void Controller::renderScoresToScreenbuffer(){
+void Controller::renderScoresToScreenbuffer() {
 	scorekeeper.getDisplayString(myScreenVector[0]);
 }
-void Controller::createBalloon(){
+void Controller::createBalloon() {
 	//BALLOON CREATION RATE based on difficulty
 	if (--iTimeBetweenBalloonCreation != 0)
 		return;
-	iTimeBetweenBalloonCreation = QUANTUM_WAIT_TIME + QUANTUM_WAIT_TIME*(FAST-mSpeed);		//if set to fast last term drops to 0 then balloons are created quickly
+	iTimeBetweenBalloonCreation = QUANTUM_WAIT_TIME + QUANTUM_WAIT_TIME*(FAST - mSpeed);		//if set to fast last term drops to 0 then balloons are created quickly
 
-	//LOCATION  number between 0 and max balloon size for location
-	int ilocx = rand()%(myScreenBufferSize.x - BALLOON_WIDTH);
-	int ilocy = rand()%BALLOON_APPEAR_BAND_SIZE;	//anywhere withen first 5 lines
+																								//LOCATION  number between 0 and max balloon size for location
+	int ilocx = rand() % (myScreenBufferSize.x - BALLOON_WIDTH);
+	int ilocy = rand() % BALLOON_APPEAR_BAND_SIZE;	//anywhere withen first 5 lines
 	location myLoc(ilocx, ilocy);
 
 	//HOW LONG BEFORE IT FALLS
-	int iHowLongBeforeFall = MIN_BALLOON_HOVER_TIME + ((FAST-mSpeed)*QUANTUM_WAIT_TIME);
+	int iHowLongBeforeFall = MIN_BALLOON_HOVER_TIME + ((FAST - mSpeed)*QUANTUM_WAIT_TIME);
 
 	//SPEED OF FALL
-	SPEED iBalloonSpeed = (SPEED)((rand()%mSpeed) +1);	//make sure this falls between SLOW=1 and FAST=4
+	SPEED iBalloonSpeed = (SPEED)((rand() % mSpeed) + 1);	//make sure this falls between SLOW=1 and FAST=4
 
- 	//TODO add it to a single vector that tracks balloons terrible balloons and anvils
-	myMoveables.push_back(new Balloon(myScreenBufferSize, myLoc, iHowLongBeforeFall, iBalloonSpeed));
+															//TODO add it to a single vector that tracks balloons terrible balloons and anvils
+	Balloon aBalloon(myScreenBufferSize, myLoc, iHowLongBeforeFall, iBalloonSpeed);
+	myMoveables.push_back(std::unique_ptr<Moveable>(new Balloon(myScreenBufferSize, myLoc, iHowLongBeforeFall, iBalloonSpeed)));
 }
 
 void Controller::createAnvil() {
-	//ANVIL CREATION RATE based on difficulty
+	//BALLOON CREATION RATE based on difficulty
 	if (--iTimeBetweenAnvilCreation != 0)
 		return;
-	iTimeBetweenAnvilCreation = QUANTUM_WAIT_TIME + QUANTUM_WAIT_TIME*(FAST - mSpeed);		//if set to fast last term drops to 0 then balloons are created quickly
+	iTimeBetweenAnvilCreation = QUANTUM_WAIT_TIME * 5 + QUANTUM_WAIT_TIME*(FAST - mSpeed);		//if set to fast last term drops to 0 then balloons are created quickly
 
 																								//LOCATION  number between 0 and max balloon size for location
 	int ilocx = rand() % (myScreenBufferSize.x - ANVIL_WIDTH);
@@ -138,15 +138,15 @@ void Controller::createAnvil() {
 	//SPEED OF FALL
 	SPEED iAnvilSpeed = (SPEED)((rand() % mSpeed) + 1);	//make sure this falls between SLOW=1 and FAST=4
 
-	//TODO add it to a single vector that tracks balloons terrible balloons and anvils
-	Anvil pAnvil(myScreenBufferSize, myLoc, iHowLongBeforeFall, iAnvilSpeed);
-	myMoveables.push_back(new Anvil(myScreenBufferSize, myLoc, iHowLongBeforeFall, iAnvilSpeed));
+														//TODO add it to a single vector that tracks balloons terrible balloons and anvils
+	Anvil aAnvil(myScreenBufferSize, myLoc, iHowLongBeforeFall, iAnvilSpeed);
+	myMoveables.push_back(std::unique_ptr<Moveable>(new Anvil(myScreenBufferSize, myLoc, iHowLongBeforeFall, iAnvilSpeed)));
 }
 
-COLLISION Controller::hasCollidedWithCosmo(Moveable *pMoveable){
+COLLISION Controller::hasCollidedWithCosmo(Moveable &pBalloon) {
 	//get the x separation 
-	int x = cosmo.getX() - (*pMoveable).getX();
-	int y = cosmo.getY() - (*pMoveable).getY();
+	int x = cosmo.getX() - pBalloon.getX();
+	int y = cosmo.getY() - pBalloon.getY();
 	double distance = sqrt(x*x + y*y);
 
 	if (distance <= mCollisionDistance) {
@@ -163,7 +163,7 @@ COLLISION Controller::hasCollidedWithCosmo(Moveable *pMoveable){
 		//balloon hit cosmo on head or back or cosmo was standing with arms on hips 
 		scorekeeper.incScoreBalloon();
 		return BALLOON_CLOBBERED_COSMO;
-		
+
 	}
 	else
 		return NO;
