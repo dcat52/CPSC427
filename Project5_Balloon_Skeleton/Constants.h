@@ -59,3 +59,11 @@ const int BALLOON_APPEAR_BAND_SIZE	= 5;
 
 const int BALLOON_MOVE_WAIT_TIME = 12;
 const int BALLOON_POP_DISPLAY = 5;
+
+//wait times for at keast this many cycles
+const int MIN_ANVIL_HOVER_TIME		= 30;
+const int QUANTUM_ANVIL_WAIT_TIME	= 120;
+const int ANVIL_APPEAR_BAND_SIZE	= 120;
+
+const int ANVIL_MOVE_WAIT_TIME		= 10;
+const int ANVIL_DISPLAY_TIME		= 5;

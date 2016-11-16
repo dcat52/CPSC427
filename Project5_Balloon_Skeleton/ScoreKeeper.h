@@ -7,12 +7,12 @@ public:
 	ScoreKeeper(void);
 	~ScoreKeeper(void);
 
-	//pass in a string and put cosmos score at begginning and Balloons at end
+	//pass in a string and put cosmos score at beginning and Balloons at end
 	//WILL NOT ALTER LENGTH OF STRING (fails if string not long enough)
 	bool getDisplayString(std::string &scoreString);
 
-	//inline int getScoreBalloon(){return scoreBalloon;};
-	//inline int getScoreCosmo(){return scoreBalloon;};
+	inline int getScoreBalloon(){return scoreBalloon;};
+	inline int getScoreCosmo(){return scoreBalloon;};
 
 	//typically its 1 at a time
 	inline  void incScoreBalloon(int i=1){scoreBalloon+=i;};

@@ -10,23 +10,23 @@ Anvil::Anvil(sizeofScreenBuffer myScreenBufferSize, location myLoc, int iHowLong
 	this->spd = spd;
 	this->dir = dir;
 	this->col = NO;
-	this->iTimeSinceCreation = 0;
+	this->iTimeSinceAnvilCreation = 0;
 	this->iLastMoveTime = 0;
 	this->iTimeBetweenMovements = BALLOON_MOVE_WAIT_TIME;
-	this->balloonPopTime = 0;
+	this->anvilPopTime = 0;
 }
 
 Anvil::~Anvil(void)
 {
 }
 
-//returns true if its time to delete this balloon
+//returns true if its time to delete this anvil
 bool Anvil::draw(std::vector<std::string> &myScreenVector) {			//pure virtual, abstract base class, MUST BE DEFINED BY DERIVED CLASSES	
 	bool bDeleteMe = false;
 	col = this->col;
-	iTimeSinceCreation++;
+	iTimeSinceAnvilCreation++;
 	switch (col) {
-	case COSMO_POPPED:
+	/*case COSMO_POPPED:
 		myScreenVector[getY() + 0].replace(getX(), BALLOON_WIDTH, "       ");
 		myScreenVector[getY() + 1].replace(getX(), BALLOON_WIDTH, "    |  ");
 		myScreenVector[getY() + 2].replace(getX(), BALLOON_WIDTH, "  \\   /");
@@ -35,27 +35,24 @@ bool Anvil::draw(std::vector<std::string> &myScreenVector) {			//pure virtual, a
 		myScreenVector[getY() + 5].replace(getX(), BALLOON_WIDTH, "    |  ");
 		myScreenVector[getY() + 6].replace(getX(), BALLOON_WIDTH, "       ");
 
-		if (balloonPopTime == 0) {
-			balloonPopTime = iTimeSinceCreation;
+		if (anvilPopTime == 0) {
+			anvilPopTime = iTimeSinceCreation;
 		}
-		if (iTimeSinceCreation - balloonPopTime >= BALLOON_POP_DISPLAY) {
+		if (iTimeSinceCreation - anvilPopTime >= BALLOON_POP_DISPLAY) {
 			bDeleteMe = true;
 		}
-		break;
+		break;*/
 
 	case BALLOON_CLOBBERED_COSMO:
-		myScreenVector[getY() + 0].replace(getX(), BALLOON_WIDTH, "   *   ");
-		myScreenVector[getY() + 1].replace(getX(), BALLOON_WIDTH, " *   * ");
-		myScreenVector[getY() + 2].replace(getX(), BALLOON_WIDTH, "* * * *");
-		myScreenVector[getY() + 3].replace(getX(), BALLOON_WIDTH, "*BOOM *");
-		myScreenVector[getY() + 4].replace(getX(), BALLOON_WIDTH, "* * * *");
-		myScreenVector[getY() + 5].replace(getX(), BALLOON_WIDTH, " *   * ");
-		myScreenVector[getY() + 6].replace(getX(), BALLOON_WIDTH, "   *   ");
+		myScreenVector[getY() + 0].replace(getX(), BALLOON_WIDTH, "OUCH");
+		myScreenVector[getY() + 1].replace(getX(), BALLOON_WIDTH, "OUCH");
+		myScreenVector[getY() + 2].replace(getX(), BALLOON_WIDTH, "OUCH");
+		myScreenVector[getY() + 3].replace(getX(), BALLOON_WIDTH, "OUCH");
 
-		if (balloonPopTime == 0) {
-			balloonPopTime = iTimeSinceCreation;
+		if (anvilPopTime == 0) {
+			anvilPopTime = iTimeSinceAnvilCreation;
 		}
-		if (iTimeSinceCreation - balloonPopTime >= BALLOON_POP_DISPLAY) {
+		if (iTimeSinceAnvilCreation - anvilPopTime >= ANVIL_DISPLAY_TIME) {
 			bDeleteMe = true;
 		}
 		break;
@@ -64,9 +61,9 @@ bool Anvil::draw(std::vector<std::string> &myScreenVector) {			//pure virtual, a
 
 		if (getY() + BALLOON_HEIGHT + spd < myScreenBufferSize.y)
 		{
-			if (iHowLongBeforeFall <= iTimeSinceCreation  && iTimeBetweenMovements <= iTimeSinceCreation - iLastMoveTime)
+			if (iHowLongBeforeFall <= iTimeSinceAnvilCreation  && iTimeBetweenMovements <= iTimeSinceAnvilCreation - iLastMoveTime)
 			{
-				iLastMoveTime = iTimeSinceCreation;
+				iLastMoveTime = iTimeSinceAnvilCreation;
 				setY(getY() + spd);
 				setLocation(myLoc);
 			}
@@ -76,11 +73,11 @@ bool Anvil::draw(std::vector<std::string> &myScreenVector) {			//pure virtual, a
 			bDeleteMe = true;
 		}
 
-		myScreenVector[getY() + 0].replace(getX(), BALLOON_WIDTH, "  ___  ");
-		myScreenVector[getY() + 1].replace(getX(), BALLOON_WIDTH, " //\\ \\ ");
-		myScreenVector[getY() + 2].replace(getX(), BALLOON_WIDTH, "| \\/  |");
-		myScreenVector[getY() + 3].replace(getX(), BALLOON_WIDTH, " \\   / ");
-		myScreenVector[getY() + 4].replace(getX(), BALLOON_WIDTH, "  \\ /  ");
+		myScreenVector[getY() + 0].replace(getX(), BALLOON_WIDTH, "    --- "    );
+		myScreenVector[getY() + 1].replace(getX(), BALLOON_WIDTH, "   /__/\\"   );
+		myScreenVector[getY() + 2].replace(getX(), BALLOON_WIDTH, "  /   \\ \\" );
+		myScreenVector[getY() + 3].replace(getX(), BALLOON_WIDTH, " /     \\ \\");
+		myScreenVector[getY() + 4].replace(getX(), BALLOON_WIDTH, "/_______\\/ ");
 
 		break;
 	}

@@ -45,6 +45,9 @@ private:
 	int iTimeBetweenBalloonCreation;
 	sizeofScreenBuffer myScreenBufferSize;	//width and height of consolewindow
 
+	//number of game ticks before anvil is created
+	int iTimeBetweenAnvilCreation;
+
 	//holds entire consolewindow screen, 
 	//usually 80 chars wide by 24 lines long
 	std::vector<std::string> myScreenVector;

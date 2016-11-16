@@ -14,8 +14,8 @@ public:
 private:
 	//waits around a while before it falls 
 	int iHowLongBeforeFall;
-	int iTimeSinceCreation;
+	int iTimeSinceAnvilCreation;
 	int iLastMoveTime;
-	int balloonPopTime;
+	int anvilPopTime;
 };
 
