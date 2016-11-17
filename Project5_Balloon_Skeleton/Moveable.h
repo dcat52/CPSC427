@@ -15,6 +15,8 @@ public:
 	inline int getY(){return myLoc.y;};
 	inline void setX(int x) { myLoc.x = x; };
 	inline void setY(int y) { myLoc.y = y; };
+	inline int getCollidable(){return bCollidable;};
+	inline OBJECT_TYPE getType() { return type; };
 	inline DIRECTION getDir(){return dir;};
 	void setCollidedState(COLLISION col);
 	inline void setLocation(location myLoc){this->myLoc = myLoc;};
@@ -31,6 +33,8 @@ protected:
 	COLLISION col;
 	int pointsIfMoveableWins;
 	int pointsIfCosmoWins;
+	OBJECT_TYPE type;
+
 
 	//use this to limit the number of times a collision can be counted
 	//for instance when a terrible balloon turns into a Bee dont count collisions afterward

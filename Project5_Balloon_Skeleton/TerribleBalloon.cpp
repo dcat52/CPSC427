@@ -15,6 +15,8 @@ TerribleBalloon::TerribleBalloon(sizeofScreenBuffer myScreenBufferSize, location
 	this->iLastMoveTime = 0;
 	this->iTimeBetweenMovements = BALLOON_MOVE_WAIT_TIME;
 	this->balloonPopTime = 0;
+	this->type = TERRIBLE_BALLOON;
+	this->setCollidable(true);
 }
 
 TerribleBalloon::~TerribleBalloon(void)
@@ -27,65 +29,50 @@ bool TerribleBalloon::draw(std::vector<std::string> &myScreenVector) { //pure vi
 	col = this->col;
 	iTimeSinceCreation++;
 	switch (col) {
-	case COSMO_POPPED:
-		myScreenVector[getY() + 0].replace(getX(), BALLOON_WIDTH, "       ");
-		myScreenVector[getY() + 1].replace(getX(), BALLOON_WIDTH, "    |  ");
-		myScreenVector[getY() + 2].replace(getX(), BALLOON_WIDTH, "  \\   /");
-		myScreenVector[getY() + 3].replace(getX(), BALLOON_WIDTH, " - pop-");
-		myScreenVector[getY() + 4].replace(getX(), BALLOON_WIDTH, "  /   \\");
-		myScreenVector[getY() + 5].replace(getX(), BALLOON_WIDTH, "    |  ");
-		myScreenVector[getY() + 6].replace(getX(), BALLOON_WIDTH, "       ");
+		case COSMO_POPPED:
+		case BALLOON_CLOBBERED_COSMO:
+				myScreenVector[getY() + 0].replace(getX(), BALLOON_WIDTH, "       ");
+				myScreenVector[getY() + 1].replace(getX(), BALLOON_WIDTH, "    |  ");
+				myScreenVector[getY() + 2].replace(getX(), BALLOON_WIDTH, "  \\   /");
+				myScreenVector[getY() + 3].replace(getX(), BALLOON_WIDTH, " - pop-");
+				myScreenVector[getY() + 4].replace(getX(), BALLOON_WIDTH, "  /   \\");
+				myScreenVector[getY() + 5].replace(getX(), BALLOON_WIDTH, "    |  ");
+				myScreenVector[getY() + 6].replace(getX(), BALLOON_WIDTH, "       ");
+			
+				this->setCollidable(false);
+				if (balloonPopTime == 0) {
+					balloonPopTime = iTimeSinceCreation;
+				}
+				if (iTimeSinceCreation - balloonPopTime >= BALLOON_POP_DISPLAY) {
+					bDeleteMe = true;
+				}
+				break;
 
-		if (balloonPopTime == 0) {
-			balloonPopTime = iTimeSinceCreation;
-		}
-		if (iTimeSinceCreation - balloonPopTime >= BALLOON_POP_DISPLAY) {
-			bDeleteMe = true;
-		}
-		break;
+		case NO:
 
-	case BALLOON_CLOBBERED_COSMO:
-		myScreenVector[getY() + 0].replace(getX(), BALLOON_WIDTH, "   *   ");
-		myScreenVector[getY() + 1].replace(getX(), BALLOON_WIDTH, " *   * ");
-		myScreenVector[getY() + 2].replace(getX(), BALLOON_WIDTH, "* * * *");
-		myScreenVector[getY() + 3].replace(getX(), BALLOON_WIDTH, "*BOOM *");
-		myScreenVector[getY() + 4].replace(getX(), BALLOON_WIDTH, "* * * *");
-		myScreenVector[getY() + 5].replace(getX(), BALLOON_WIDTH, " *   * ");
-		myScreenVector[getY() + 6].replace(getX(), BALLOON_WIDTH, "   *   ");
-
-		if (balloonPopTime == 0) {
-			balloonPopTime = iTimeSinceCreation;
-		}
-		if (iTimeSinceCreation - balloonPopTime >= BALLOON_POP_DISPLAY) {
-			bDeleteMe = true;
-		}
-		break;
-
-	case NO:
-
-		if (getY() + BALLOON_HEIGHT + spd < myScreenBufferSize.y)
-		{
-			if (iHowLongBeforeFall <= iTimeSinceCreation  && iTimeBetweenMovements <= iTimeSinceCreation - iLastMoveTime)
+			if (getY() + BALLOON_HEIGHT + spd < myScreenBufferSize.y)
 			{
-				iLastMoveTime = iTimeSinceCreation;
-				setY(getY() + spd);
-				setLocation(myLoc);
+				if (iHowLongBeforeFall <= iTimeSinceCreation  && iTimeBetweenMovements <= iTimeSinceCreation - iLastMoveTime)
+				{
+					iLastMoveTime = iTimeSinceCreation;
+					setY(getY() + spd);
+					setLocation(myLoc);
+				}
 			}
-		}
-		else
-		{
-			bDeleteMe = true;
-		}
+			else
+			{
+				bDeleteMe = true;
+			}
 
-		myScreenVector[getY() + 0].replace(getX(), BALLOON_WIDTH, "  ___  ");
-		myScreenVector[getY() + 1].replace(getX(), BALLOON_WIDTH, " //\\ \\ ");
-		myScreenVector[getY() + 2].replace(getX(), BALLOON_WIDTH, "| \\/  |");
-		myScreenVector[getY() + 3].replace(getX(), BALLOON_WIDTH, " \\   / ");
-		myScreenVector[getY() + 4].replace(getX(), BALLOON_WIDTH, "  \\ /  ");
-		myScreenVector[getY() + 5].replace(getX(), BALLOON_WIDTH, "   |   ");
-		myScreenVector[getY() + 6].replace(getX(), BALLOON_WIDTH, "   |   ");
+			myScreenVector[getY() + 0].replace(getX(), BALLOON_WIDTH, "  ___  ");
+			myScreenVector[getY() + 1].replace(getX(), BALLOON_WIDTH, " //\\ \\ ");
+			myScreenVector[getY() + 2].replace(getX(), BALLOON_WIDTH, "| \\/  |");
+			myScreenVector[getY() + 3].replace(getX(), BALLOON_WIDTH, " \\   / ");
+			myScreenVector[getY() + 4].replace(getX(), BALLOON_WIDTH, "  \\ /  ");
+			myScreenVector[getY() + 5].replace(getX(), BALLOON_WIDTH, "   |   ");
+			myScreenVector[getY() + 6].replace(getX(), BALLOON_WIDTH, "   |   ");
 
-		break;
+			break;
 	}
 
 	return bDeleteMe;

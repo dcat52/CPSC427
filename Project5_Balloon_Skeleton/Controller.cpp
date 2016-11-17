@@ -74,11 +74,14 @@ void Controller::draw() {
 		while (myIter != myMoveables.end()) {
 			//collisions
 			COLLISION col = hasCollidedWithCosmo(*(*myIter));
-			if (col == COSMO_POPPED || col == BALLOON_CLOBBERED_COSMO)
+			if (col == COSMO_POPPED || col == BALLOON_CLOBBERED_COSMO || col == ANVIL_SMASH)
 				(*myIter)->setCollidedState(col);
 
-			if ((*myIter)->draw(myScreenVector))
+			if ((*myIter)->draw(myScreenVector)) {
+				if((*myIter)->getType() == ANVIL)
+					scorekeeper.incScoreCosmo(5);
 				myIter = myMoveables.erase(myIter);
+			}
 			else
 			{
 				++myIter;
@@ -143,17 +146,22 @@ void Controller::createAnvil() {
 	myMoveables.push_back(std::unique_ptr<Moveable>(new Anvil(myScreenBufferSize, myLoc, iHowLongBeforeFall, iAnvilSpeed)));
 }
 
-COLLISION Controller::hasCollidedWithCosmo(Moveable &pBalloon) {
+COLLISION Controller::hasCollidedWithCosmo(Moveable &pObject) {
 	//get the x separation 
-	int x = cosmo.getX() - pBalloon.getX();
-	int y = cosmo.getY() - pBalloon.getY();
+	int x = cosmo.getX() - pObject.getX();
+	int y = cosmo.getY() - pObject.getY();
 	double distance = sqrt(x*x + y*y);
 
-	if (distance <= mCollisionDistance) {
+	if (distance <= mCollisionDistance && pObject.getCollidable() == true) {
 		//nows the time to see where cosmo was hit
 		//-on head the balloon wins
 		//-on side with needle(s) cosmo wins
 		DIRECTION dir = cosmo.getDir();
+		
+		if(pObject.getType() == ANVIL) {
+			scorekeeper.incScoreBalloon(5);
+			return ANVIL_SMASH;
+		}
 
 		if (dir == UP || (x > 0 && dir == LEFT) || (x < 0 && dir == RIGHT)) {
 			scorekeeper.incScoreCosmo();

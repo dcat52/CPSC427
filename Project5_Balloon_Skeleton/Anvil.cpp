@@ -14,6 +14,8 @@ Anvil::Anvil(sizeofScreenBuffer myScreenBufferSize, location myLoc, int iHowLong
 	this->iLastMoveTime = 0;
 	this->iTimeBetweenMovements = ANVIL_MOVE_WAIT_TIME;
 	this->anvilOuchTime = 0;
+	this->type = ANVIL;
+	this->setCollidable(true);
 }
 
 Anvil::~Anvil(void)
@@ -34,6 +36,7 @@ bool Anvil::draw(std::vector<std::string> &myScreenVector) {			//pure virtual, a
 		myScreenVector[getY() + 2].replace(getX(), 4, "OUCH");
 		myScreenVector[getY() + 3].replace(getX(), 4, "OUCH");
 
+		this->setCollidable(false);
 		if (anvilOuchTime == 0) {
 			anvilOuchTime = iTimeSinceAnvilCreation;
 		}
