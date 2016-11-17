@@ -16,9 +16,12 @@ ScoreKeeper::~ScoreKeeper(void)
 }
 
 bool ScoreKeeper::getDisplayString(std::string &scoreString){
-	//TODO calculate the score that goes in the display string here
 	std::string scoreRight = COSMO_SCORE_PREFIX + std::to_string(getScoreCosmo());
 	std::string scoreLeft = BALLOON_SCORE_PREFIX + std::to_string(getScoreBalloon());
+	// ^^ use string formatting with %s and %d with SPACES_FOR_SCORE for %d
+
+	// TODO increment score throughout program properly 
+
 	while (scoreRight.length() < LEN_COSMO_SCORE_PREFIX + SPACES_FOR_SCORE)
 		scoreRight += " ";
 	while (scoreLeft.length() < LEN_BALLOON_SCORE_PREFIX + SPACES_FOR_SCORE)

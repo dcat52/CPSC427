@@ -86,6 +86,7 @@
     <ClCompile Include="Project5_Balloon.cpp" />
     <ClCompile Include="Runnable.cpp" />
     <ClCompile Include="ScoreKeeper.cpp" />
+    <ClCompile Include="TerribleBalloon.cpp" />
     <ClCompile Include="ThreadUserInput.cpp" />
   </ItemGroup>
   <ItemGroup>
@@ -98,6 +99,7 @@
     <ClInclude Include="Person.h" />
     <ClInclude Include="Runnable.h" />
     <ClInclude Include="ScoreKeeper.h" />
+    <ClInclude Include="TerribleBalloon.h" />
     <ClInclude Include="ThreadUserInput.h" />
   </ItemGroup>
   <ItemGroup>

@@ -11,7 +11,7 @@ public:
 	//returns true if its time to delete
 	virtual bool draw(std::vector<std::string> &myScreenVector);	
 
-private:
+protected:
 	//waits around a while before it falls 
 	int iHowLongBeforeFall;
 	int iTimeSinceCreation;

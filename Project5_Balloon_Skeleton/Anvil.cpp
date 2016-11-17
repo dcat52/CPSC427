@@ -28,6 +28,7 @@ bool Anvil::draw(std::vector<std::string> &myScreenVector) {			//pure virtual, a
 	switch (col) {
 
 	case BALLOON_CLOBBERED_COSMO:
+	case COSMO_POPPED:
 		myScreenVector[getY() + 0].replace(getX(), 4, "OUCH");
 		myScreenVector[getY() + 1].replace(getX(), 4, "OUCH");
 		myScreenVector[getY() + 2].replace(getX(), 4, "OUCH");
