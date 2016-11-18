@@ -3,6 +3,7 @@
 #include "Moveable.h"
 #include "Controller.h"
 
+//constructor for BALLOON 
 Balloon::Balloon(sizeofScreenBuffer myScreenBufferSize,location myLoc,int iHowLongBeforeFall, SPEED spd, DIRECTION dir ):Moveable(myScreenBufferSize,myLoc,spd, dir)
 {
 	this->myScreenBufferSize = myScreenBufferSize;
@@ -28,6 +29,7 @@ bool Balloon::draw(std::vector<std::string> &myScreenVector){ //pure virtual, ab
 	col = this->col;
 	iTimeSinceCreation++;
 	switch(col) {
+		//if cosmo pops balloon then...
 		case COSMO_POPPED:
 		myScreenVector[getY() + 0].replace(getX(), BALLOON_WIDTH, "       ");
 		myScreenVector[getY() + 1].replace(getX(), BALLOON_WIDTH, "    |  ");
@@ -46,6 +48,7 @@ bool Balloon::draw(std::vector<std::string> &myScreenVector){ //pure virtual, ab
 		}
 		break;
 
+		//if balloon hits cosmo's hair then...
 	case BALLOON_CLOBBERED_COSMO:
 		myScreenVector[getY() + 0].replace(getX(), BALLOON_WIDTH, "   *   ");
 		myScreenVector[getY() + 1].replace(getX(), BALLOON_WIDTH, " *   * ");
@@ -64,6 +67,7 @@ bool Balloon::draw(std::vector<std::string> &myScreenVector){ //pure virtual, ab
 		}
 		break;
 		
+		//if balloon is not touched by cosmo then it will keep falling and will be removed from the polymorphic vector
 		case NO:
 			
 			if (getY() + BALLOON_HEIGHT + spd < myScreenBufferSize.y)
@@ -80,6 +84,7 @@ bool Balloon::draw(std::vector<std::string> &myScreenVector){ //pure virtual, ab
 				bDeleteMe = true;
 			}
 
+			//what a balloon looks like
 			myScreenVector[getY() + 0].replace(getX(), BALLOON_WIDTH, "  ___  ");
 			myScreenVector[getY() + 1].replace(getX(), BALLOON_WIDTH, " //\\ \\ ");
 			myScreenVector[getY() + 2].replace(getX(), BALLOON_WIDTH, "| \\/  |");

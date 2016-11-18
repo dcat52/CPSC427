@@ -16,6 +16,7 @@ bool Person::draw(std::vector<std::string> &myScreenVector){			//pure virtual, a
 	bLegChangePosition = !bLegChangePosition;
 	
 	switch(dir){
+		//when cosmo goes left
 	case LEFT:
 		if (myLoc.x - spd > 0)
 		{
@@ -41,6 +42,7 @@ bool Person::draw(std::vector<std::string> &myScreenVector){			//pure virtual, a
 		}
 		break;
 
+		//when cosmo goes to the right
 	case RIGHT:
 		if (myLoc.x + spd < myScreenBufferSize.x - 14)
 		{
@@ -66,6 +68,7 @@ bool Person::draw(std::vector<std::string> &myScreenVector){			//pure virtual, a
 		}
 		break;
 
+		//when the up arrow is pressed
 	case UP:
 		myScreenVector[getY() + 0].replace(getX(), PERSON_WIDTH, " \\\\\\\\\\|///// ");
 		myScreenVector[getY() + 1].replace(getX(), PERSON_WIDTH,    "  \\\\|\\ /|//  ");
@@ -79,6 +82,7 @@ bool Person::draw(std::vector<std::string> &myScreenVector){			//pure virtual, a
 		myScreenVector[getY() + 9].replace(getX(), PERSON_WIDTH,      "     _|_     ");
 		break;
 
+		//when the down arrow is pressed or when cosmo is not moving
 	case DOWN:
 	case NO_DIR:
 		myScreenVector[getY() + 0].replace(getX(), PERSON_WIDTH, " \\\\\\\\\\|///// ");

@@ -4,12 +4,13 @@
 #include "Moveable.h"
 #include "Controller.h"
 
+//constructor for terrible balloon
 TerribleBalloon::TerribleBalloon(sizeofScreenBuffer myScreenBufferSize, location myLoc, int iHowLongBeforeFall, SPEED spd, DIRECTION dir) :Balloon(myScreenBufferSize, myLoc, iHowLongBeforeFall, spd, dir)
 {
 	this->myScreenBufferSize = myScreenBufferSize;
 	this->myLoc = myLoc;
 	this->iHowLongBeforeFall = iHowLongBeforeFall;
-	this->spd = spd;
+	this->spd = spd;												
 	this->dir = dir;
 	this->col = NO;
 	this->iTimeSinceCreation = 0;
@@ -30,6 +31,7 @@ bool TerribleBalloon::draw(std::vector<std::string> &myScreenVector) { //pure vi
 	col = this->col;
 	iTimeSinceCreation++;
 	switch (col) {
+		//if TERRIBLEBALLOON is popped by cosmo or it clobbers cosmo then...
 		case COSMO_POPPED:
 		case BALLOON_CLOBBERED_COSMO:
 				myScreenVector[getY() + 0].replace(getX(), BALLOON_WIDTH, "  *  * ");
@@ -49,6 +51,7 @@ bool TerribleBalloon::draw(std::vector<std::string> &myScreenVector) { //pure vi
 				}
 				break;
 
+		//if not popped by cosmo or terrible ballon does not clobber cosmo then it will keep falling
 		case NO:
 
 			if (getY() + BALLOON_HEIGHT + spd < myScreenBufferSize.y)
@@ -65,6 +68,7 @@ bool TerribleBalloon::draw(std::vector<std::string> &myScreenVector) { //pure vi
 				bDeleteMe = true;
 			}
 
+			//what terrible balloon looks like
 			myScreenVector[getY() + 0].replace(getX(), BALLOON_WIDTH, "  ___  ");
 			myScreenVector[getY() + 1].replace(getX(), BALLOON_WIDTH, " //\\ \\ ");
 			myScreenVector[getY() + 2].replace(getX(), BALLOON_WIDTH, "| \\/TB|");

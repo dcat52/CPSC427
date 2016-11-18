@@ -3,6 +3,7 @@
 #include "Moveable.h"
 #include "Controller.h"
 
+//constructor for ANVIL
 Anvil::Anvil(sizeofScreenBuffer myScreenBufferSize, location myLoc, int iHowLongBeforeFall, SPEED spd, DIRECTION dir) :Moveable(myScreenBufferSize, myLoc, spd, dir)
 {
 	this->myScreenBufferSize = myScreenBufferSize;
@@ -30,6 +31,7 @@ bool Anvil::draw(std::vector<std::string> &myScreenVector) {			//pure virtual, a
 	iTimeSinceAnvilCreation++;
 	switch (col) {
 
+		//if ANVIL collides with cosmo then...
 	case ANVIL_SMASH:
 		myScreenVector[getY() + 0].replace(getX(), 5, "OUCH!");
 		myScreenVector[getY() + 1].replace(getX(), 5, "OUCH!");
@@ -45,6 +47,7 @@ bool Anvil::draw(std::vector<std::string> &myScreenVector) {			//pure virtual, a
 		}
 		break;
 
+		//if ANVIL does not smash cosmo then it will keep falling and be removed from the polymorphic vector
 	case NO:
 
 		if (getY() + ANVIL_HEIGHT + spd < myScreenBufferSize.y)
@@ -61,6 +64,7 @@ bool Anvil::draw(std::vector<std::string> &myScreenVector) {			//pure virtual, a
 			aDeleteMe = true;
 		}
 
+		//what the anvil looks likes when it's fall but not smashing cosmo
 		myScreenVector[getY() + 0].replace(getX(), ANVIL_WIDTH, "    __     ");
 		myScreenVector[getY() + 1].replace(getX(), ANVIL_WIDTH, "   /__/\\   ");
 		myScreenVector[getY() + 2].replace(getX(), ANVIL_WIDTH, "  /   \\ \\  ");

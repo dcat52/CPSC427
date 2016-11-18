@@ -17,6 +17,7 @@ enum BALLOON_STATE{IS_BALLOON, IS_BEE};
 enum CONTROLLER_STATE{SHOW_INTRO,RESET,RUN};
 
 //start off slow
+//TODO make sure to set to SLOW before submitting
 const SPEED CONTROLLER_SPEED = MEDIUM;
 
 struct location{

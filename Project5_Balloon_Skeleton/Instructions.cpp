@@ -10,6 +10,7 @@ Instructions::~Instructions(void)
 {
 }
 
+//instructions will appear when the window is opened explaining the object of the game and how to play
 //returns true if its time to delete this balloon
 bool Instructions::draw(std::vector<std::string> &myScreenVector){			//pure virtual, abstract base class, MUST BE DEFINED BY DERIVED CLASSES	
 	

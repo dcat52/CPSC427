@@ -6,6 +6,7 @@ class TerribleBalloon :
 	public Balloon
 {
 public:
+	//constructor for terrible balloon
 	TerribleBalloon(sizeofScreenBuffer myScreenBufferSize, location myLoc, int iHowLongBeforeFall, SPEED spd = NO_SPD, DIRECTION dir = DOWN);
 	virtual ~TerribleBalloon(void);
 

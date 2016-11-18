@@ -50,22 +50,28 @@ int main() {
 		//see if user wants to go anywhere
 		myChar = myInput.getInput();
 		switch (myChar){
+			//if left arrow key is pressed then cosmo will go to the left
 		case LEFT_ARROW:
 			myController.changeCosmoDirection(LEFT);
 			break;
+			//if right arrow key is pressed then cosmo will go to the right
 		case RIGHT_ARROW:
 			myController.changeCosmoDirection(RIGHT);
 			break;
+			//if up arrow key is pressed then cosmo will stay in place but his arms will point upward
 		case UP_ARROW:
 			myController.changeCosmoDirection(UP);
 			break;
+			//if down arrow key is pressed then cosmo will stay in place but his arms will point downward
 		case DOWN_ARROW:
 			myController.changeCosmoDirection(NO_DIR);
 			break;
+		//if i or I is pressed then the instructions will appear
 		case 'i':
 		case 'I':
 			myController.setControllerState(SHOW_INTRO);
 			break;
+		//if r or R is pressed then game will reset
 		case 'r':
 		case 'R':
 			myController.setControllerState(RESET);
@@ -74,6 +80,7 @@ int main() {
 		case 'B':
 			myController.setControllerState(RUN);
 			break;
+		//if t or T is pressed then terrible balloon will be implemented
 		case 't':
 		case 'T':
 			if (myController.getTerribleBalloonsOn())

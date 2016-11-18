@@ -61,7 +61,8 @@ void Controller::draw() {
 		initialize();
 		mControllerState = RUN;
 		break;
-
+	
+		//when the game is started the instructions will show up on the screen
 	case SHOW_INTRO:
 		myInstructions.draw(myScreenVector);
 		break;
@@ -106,6 +107,7 @@ void Controller::draw() {
 void Controller::renderScoresToScreenbuffer() {
 	scorekeeper.getDisplayString(myScreenVector[0]);
 }
+//creates BALLOONS and stores them in polymorphic vector
 void Controller::createBalloon() {
 	//BALLOON CREATION RATE based on difficulty
 	if (--iTimeBetweenBalloonCreation != 0)
@@ -129,8 +131,9 @@ void Controller::createBalloon() {
 		myMoveables.push_back(std::unique_ptr<Moveable>(new Balloon(myScreenBufferSize, myLoc, iHowLongBeforeFall, iBalloonSpeed)));
 }
 
+//creates ANVILS and stores them in polymorphic vector 
 void Controller::createAnvil() {
-	//BALLOON CREATION RATE based on difficulty
+	//ANVIL CREATION RATE based on difficulty
 	if (--iTimeBetweenAnvilCreation != 0)
 		return;
 	iTimeBetweenAnvilCreation = QUANTUM_WAIT_TIME * 5 + QUANTUM_WAIT_TIME*(FAST - mSpeed);		//if set to fast last term drops to 0 then balloons are created quickly
