@@ -17,7 +17,7 @@ enum BALLOON_STATE{IS_BALLOON, IS_BEE};
 enum CONTROLLER_STATE{SHOW_INTRO,RESET,RUN};
 
 //start off slow
-const SPEED CONTROLLER_SPEED = SLOW;
+const SPEED CONTROLLER_SPEED = MEDIUM;
 
 struct location{
 	int x;
@@ -67,3 +67,4 @@ const int ANVIL_APPEAR_BAND_SIZE = 3;
 
 const int ANVIL_MOVE_WAIT_TIME = 1;
 const int ANVIL_OUCH_DISPLAY = 5;
+

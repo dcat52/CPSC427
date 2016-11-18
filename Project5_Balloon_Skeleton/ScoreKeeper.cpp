@@ -1,3 +1,4 @@
+#pragma once
 #include "ScoreKeeper.h"
 
 const char COSMO_SCORE_PREFIX[]		= "COSMO = ";
@@ -22,11 +23,11 @@ bool ScoreKeeper::getDisplayString(std::string &scoreString){
 
 	// TODO increment score throughout program properly 
 
-	while (scoreRight.length() < LEN_COSMO_SCORE_PREFIX + SPACES_FOR_SCORE)
-		scoreRight += " ";
-	while (scoreLeft.length() < LEN_BALLOON_SCORE_PREFIX + SPACES_FOR_SCORE)
-		scoreLeft += " ";
+	//while (scoreRight.length() < LEN_COSMO_SCORE_PREFIX + SPACES_FOR_SCORE)
+	//	scoreRight += " ";
+	//while (scoreLeft.length() < LEN_BALLOON_SCORE_PREFIX + SPACES_FOR_SCORE)
+	//	scoreLeft += " ";
 	scoreString = scoreString.replace(0, LEN_BALLOON_SCORE_PREFIX + SPACES_FOR_SCORE, scoreLeft);
-	scoreString = scoreString.replace(scoreString.length() - LEN_COSMO_SCORE_PREFIX - SPACES_FOR_SCORE, scoreString.length(), scoreRight);
+	scoreString = scoreString.replace(scoreString.length() - LEN_COSMO_SCORE_PREFIX - SPACES_FOR_SCORE, scoreString.length()-1, scoreRight);
 	return true;
 }

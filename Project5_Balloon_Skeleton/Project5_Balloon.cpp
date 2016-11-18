@@ -1,3 +1,4 @@
+#pragma once
 #include <iostream>
 #include <windows.h>
 #include <conio.h>
@@ -72,6 +73,13 @@ int main() {
 		case 'b':
 		case 'B':
 			myController.setControllerState(RUN);
+			break;
+		case 't':
+		case 'T':
+			if (myController.getTerribleBalloonsOn())
+				myController.setTerribleBalloonsOn(false);
+			else
+				myController.setTerribleBalloonsOn(true);
 			break;
 		case 'x':
 		case 'X':

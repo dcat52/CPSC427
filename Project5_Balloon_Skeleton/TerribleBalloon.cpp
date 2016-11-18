@@ -1,3 +1,4 @@
+#pragma once
 #include "TerribleBalloon.h"
 #include "Balloon.h"
 #include "Moveable.h"
@@ -31,13 +32,13 @@ bool TerribleBalloon::draw(std::vector<std::string> &myScreenVector) { //pure vi
 	switch (col) {
 		case COSMO_POPPED:
 		case BALLOON_CLOBBERED_COSMO:
-				myScreenVector[getY() + 0].replace(getX(), BALLOON_WIDTH, "       ");
-				myScreenVector[getY() + 1].replace(getX(), BALLOON_WIDTH, "    |  ");
-				myScreenVector[getY() + 2].replace(getX(), BALLOON_WIDTH, "  \\   /");
-				myScreenVector[getY() + 3].replace(getX(), BALLOON_WIDTH, " - pop-");
-				myScreenVector[getY() + 4].replace(getX(), BALLOON_WIDTH, "  /   \\");
-				myScreenVector[getY() + 5].replace(getX(), BALLOON_WIDTH, "    |  ");
-				myScreenVector[getY() + 6].replace(getX(), BALLOON_WIDTH, "       ");
+				myScreenVector[getY() + 0].replace(getX(), BALLOON_WIDTH, "  *  * ");
+				myScreenVector[getY() + 1].replace(getX(), BALLOON_WIDTH, "*Bz_Bz*");
+				myScreenVector[getY() + 2].replace(getX(), BALLOON_WIDTH, " \\ % //");
+				myScreenVector[getY() + 3].replace(getX(), BALLOON_WIDTH, " -Bzzz-");
+				myScreenVector[getY() + 4].replace(getX(), BALLOON_WIDTH, " // % \\");
+				myScreenVector[getY() + 5].replace(getX(), BALLOON_WIDTH, "*Bz_Bz*");
+				myScreenVector[getY() + 6].replace(getX(), BALLOON_WIDTH, "  *  * ");
 			
 				this->setCollidable(false);
 				if (balloonPopTime == 0) {
@@ -66,8 +67,8 @@ bool TerribleBalloon::draw(std::vector<std::string> &myScreenVector) { //pure vi
 
 			myScreenVector[getY() + 0].replace(getX(), BALLOON_WIDTH, "  ___  ");
 			myScreenVector[getY() + 1].replace(getX(), BALLOON_WIDTH, " //\\ \\ ");
-			myScreenVector[getY() + 2].replace(getX(), BALLOON_WIDTH, "| \\/  |");
-			myScreenVector[getY() + 3].replace(getX(), BALLOON_WIDTH, " \\   / ");
+			myScreenVector[getY() + 2].replace(getX(), BALLOON_WIDTH, "| \\/TB|");
+			myScreenVector[getY() + 3].replace(getX(), BALLOON_WIDTH, " \\TB / ");
 			myScreenVector[getY() + 4].replace(getX(), BALLOON_WIDTH, "  \\ /  ");
 			myScreenVector[getY() + 5].replace(getX(), BALLOON_WIDTH, "   |   ");
 			myScreenVector[getY() + 6].replace(getX(), BALLOON_WIDTH, "   |   ");

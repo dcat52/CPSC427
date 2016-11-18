@@ -1,3 +1,4 @@
+#pragma once
 #include "Anvil.h"
 #include "Moveable.h"
 #include "Controller.h"
@@ -30,10 +31,10 @@ bool Anvil::draw(std::vector<std::string> &myScreenVector) {			//pure virtual, a
 	switch (col) {
 
 	case ANVIL_SMASH:
-		myScreenVector[getY() + 0].replace(getX(), 4, "OUCH");
-		myScreenVector[getY() + 1].replace(getX(), 4, "OUCH");
-		myScreenVector[getY() + 2].replace(getX(), 4, "OUCH");
-		myScreenVector[getY() + 3].replace(getX(), 4, "OUCH");
+		myScreenVector[getY() + 0].replace(getX(), 5, "OUCH!");
+		myScreenVector[getY() + 1].replace(getX(), 5, "OUCH!");
+		myScreenVector[getY() + 2].replace(getX(), 5, "OUCH!");
+		myScreenVector[getY() + 3].replace(getX(), 5, "OUCH!");
 
 		this->setCollidable(false);
 		if (anvilOuchTime == 0) {

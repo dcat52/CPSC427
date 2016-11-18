@@ -21,6 +21,7 @@ public:
 	void setCollidedState(COLLISION col);
 	inline void setLocation(location myLoc){this->myLoc = myLoc;};
 
+
 	//returns true if its time to delete
 	virtual	bool draw(std::vector<std::string> &myScreenVector)=0;			//pure virtual, abstract base class, MUST BE DEFINED BY DERIVED CLASSES
 	virtual ~Moveable(void);

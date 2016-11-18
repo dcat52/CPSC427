@@ -1,3 +1,4 @@
+#pragma once
 #include "Balloon.h"
 #include "Moveable.h"
 #include "Controller.h"

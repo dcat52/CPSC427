@@ -23,6 +23,10 @@ public:
 	//change game speed.
 	inline void setSpeed(SPEED speed){mSpeed = speed;};
 
+
+	inline void setTerribleBalloonsOn(bool _terribleBalloonsOn) { terribleBalloonsOn = _terribleBalloonsOn; };
+	inline bool getTerribleBalloonsOn() { return terribleBalloonsOn; };
+
 	//current state intro or run
 	inline void setControllerState(CONTROLLER_STATE state){mControllerState = state;};
 
@@ -69,5 +73,7 @@ private:
 
 	ScoreKeeper scorekeeper;
 	CONTROLLER_STATE mControllerState;
+
+	bool terribleBalloonsOn;
 };
 

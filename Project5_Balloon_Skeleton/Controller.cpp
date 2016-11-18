@@ -1,3 +1,4 @@
+#pragma once
 #include <iostream>
 #include <memory>
 #include <iterator>
@@ -6,6 +7,7 @@
 #include <time.h>
 #include "Controller.h"
 #include "balloon.h"
+#include "TerribleBalloon.h"
 #include "Anvil.h"
 #include "ScoreKeeper.h"
 
@@ -29,6 +31,8 @@ Controller::Controller(int width, int height, SPEED speed) :myScreenBufferSize(w
 	for (int i = 0; i < height; i++) {
 		myScreenVector.push_back(myString);
 	}
+
+	terribleBalloonsOn = false;
 }
 
 
@@ -119,9 +123,10 @@ void Controller::createBalloon() {
 	//SPEED OF FALL
 	SPEED iBalloonSpeed = (SPEED)((rand() % mSpeed) + 1);	//make sure this falls between SLOW=1 and FAST=4
 
-															//TODO add it to a single vector that tracks balloons terrible balloons and anvils
-	Balloon aBalloon(myScreenBufferSize, myLoc, iHowLongBeforeFall, iBalloonSpeed);
-	myMoveables.push_back(std::unique_ptr<Moveable>(new Balloon(myScreenBufferSize, myLoc, iHowLongBeforeFall, iBalloonSpeed)));
+	if(getTerribleBalloonsOn())
+		myMoveables.push_back(std::unique_ptr<Moveable>(new TerribleBalloon(myScreenBufferSize, myLoc, iHowLongBeforeFall, iBalloonSpeed)));
+	else
+		myMoveables.push_back(std::unique_ptr<Moveable>(new Balloon(myScreenBufferSize, myLoc, iHowLongBeforeFall, iBalloonSpeed)));
 }
 
 void Controller::createAnvil() {
@@ -141,8 +146,6 @@ void Controller::createAnvil() {
 	//SPEED OF FALL
 	SPEED iAnvilSpeed = (SPEED)((rand() % mSpeed) + 1);	//make sure this falls between SLOW=1 and FAST=4
 
-														//TODO add it to a single vector that tracks balloons terrible balloons and anvils
-	Anvil aAnvil(myScreenBufferSize, myLoc, iHowLongBeforeFall, iAnvilSpeed);
 	myMoveables.push_back(std::unique_ptr<Moveable>(new Anvil(myScreenBufferSize, myLoc, iHowLongBeforeFall, iAnvilSpeed)));
 }
 
