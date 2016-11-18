@@ -30,8 +30,6 @@ public:
 	//current state intro or run
 	inline void setControllerState(CONTROLLER_STATE state){mControllerState = state;};
 
-	//TODO you will have to change this function when you replace
-	//myBalloons with a polymorphic vector
 	//test to see if cosmo has run into an object
 	COLLISION hasCollidedWithCosmo(Moveable &pMoveable);
 

@@ -83,7 +83,7 @@ void Controller::draw() {
 				(*myIter)->setCollidedState(col);
 
 			if ((*myIter)->draw(myScreenVector)) {
-				if((*myIter)->getType() == ANVIL)
+				if((*myIter)->getType() == ANVIL && (*myIter)->getCollidedState() == NO)
 					scorekeeper.incScoreCosmo(5);
 				myIter = myMoveables.erase(myIter);
 			}

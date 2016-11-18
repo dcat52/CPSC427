@@ -19,6 +19,7 @@ public:
 	inline OBJECT_TYPE getType() { return type; };
 	inline DIRECTION getDir(){return dir;};
 	void setCollidedState(COLLISION col);
+	inline COLLISION getCollidedState() { return col; };
 	inline void setLocation(location myLoc){this->myLoc = myLoc;};
 
 
