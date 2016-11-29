@@ -51,11 +51,17 @@ bool testSerialization(const std::string &MYFILE1, const std::string &MYFILE2, C
 int main() 
 {
 	//I created and run a bunch(20) of threads that use ThreadFunc above 
-	ThreadFunc(5, "testString");
+	std::string test = "testString";
+	std::string test2 = "str2";
+	std::string rand = "randomNonExistant";
+	ThreadFunc(5, test);
+	ThreadFunc(2, test2);
 	//Then I wait for all of them to finish so my program does not crash
  
 	//Then I go through myGlobalCache and make sure that it holds the correct data
-
+	cout << myGlobalCache.getCount(test) << endl;
+	cout << myGlobalCache.getCount(test2) << endl;
+	cout << myGlobalCache.getCount(rand) << endl;
 
 	//then I test that serialization works correctly
 	//first without encryption, 
