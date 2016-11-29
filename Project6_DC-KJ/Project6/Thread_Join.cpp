@@ -20,16 +20,16 @@ const int NUMBER_TIMES_TO_ADD_STRING = 20;
 //use them if you wish
 
 ////global database object 
-//String_Database myGlobalCache;
+String_Database myGlobalCache;
 
 //will add myString numbTimes to myGlobalCache
-//void ThreadFunc(int numbTimes, std::string myString) 
-//{
-//	for (int i = 0; i < numbTimes; i++)
-//	{
-//		myGlobalCache.add(myString);
-//	}
-//}
+void ThreadFunc(int numbTimes, std::string myString) 
+{
+	for (int i = 0; i < numbTimes; i++)
+	{
+		myGlobalCache.add(myString);
+	}
+}
 
 bool testSerialization(const std::string &MYFILE1, const std::string &MYFILE2, Crypto *pCrypto){
 	//DataStore_File myDataStore_File1(MYFILE1,pCrypto);
@@ -51,7 +51,7 @@ bool testSerialization(const std::string &MYFILE1, const std::string &MYFILE2, C
 int main() 
 {
 	//I created and run a bunch(20) of threads that use ThreadFunc above 
-
+	ThreadFunc(5, "testString");
 	//Then I wait for all of them to finish so my program does not crash
  
 	//Then I go through myGlobalCache and make sure that it holds the correct data

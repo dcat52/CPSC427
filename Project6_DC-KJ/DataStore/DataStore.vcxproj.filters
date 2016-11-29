@@ -21,6 +21,12 @@
     <ClCompile Include="String_Data.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
+    <ClCompile Include="Datastore.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="Datastore_file.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="DataStore.h">
