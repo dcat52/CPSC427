@@ -54,10 +54,17 @@ int main()
 	std::string test = "testString";
 	std::string test2 = "str2";
 	std::string rand = "randomNonExistant";
-	ThreadFunc(5, test);
-	ThreadFunc(2, test2);
+
+	std::vector<std::thread> threads;
+
+	threads.push_back(std::thread(ThreadFunc,200,test));
+	threads.push_back(std::thread(ThreadFunc, 200, test2));
+	//make em all wait to do work
+
 	//Then I wait for all of them to finish so my program does not crash
- 
+	for (auto& thread : threads) {
+		thread.join();
+	}
 	//Then I go through myGlobalCache and make sure that it holds the correct data
 	cout << myGlobalCache.getCount(test) << endl;
 	cout << myGlobalCache.getCount(test2) << endl;

@@ -10,7 +10,10 @@ String_Database::~String_Database(void)
 
 void String_Database::add(std::string & myString)
 {
+
+	mutex.lock();
 	myStrings.push_back(myString);
+	mutex.unlock();
 }
 
 int String_Database::getCount(std::string & myString)
