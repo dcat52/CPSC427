@@ -59,13 +59,22 @@ int main()
 
 	threads.push_back(std::thread(ThreadFunc,200,test));
 	threads.push_back(std::thread(ThreadFunc, 200, test2));
+	threads.push_back(std::thread(ThreadFunc, 100, test2));
 	//make em all wait to do work
 
 	//Then I wait for all of them to finish so my program does not crash
 	for (auto& thread : threads) {
 		thread.join();
 	}
+	
 	//Then I go through myGlobalCache and make sure that it holds the correct data
+	cout << myGlobalCache.getCount(test) << endl;
+	cout << myGlobalCache.getCount(test2) << endl;
+	cout << myGlobalCache.getCount(rand) << endl;
+
+	myGlobalCache.clear();
+	cout << "cache cleared" << endl;
+
 	cout << myGlobalCache.getCount(test) << endl;
 	cout << myGlobalCache.getCount(test2) << endl;
 	cout << myGlobalCache.getCount(rand) << endl;
@@ -73,7 +82,6 @@ int main()
 	//then I test that serialization works correctly
 	//first without encryption, 
 	testSerialization(NO_ENCRYPT_FILE1, NO_ENCRYPT_FILE2, 0);
-
 
 	//then with
 	//Crypto_AES myCrypto("I Like Rollos   ");
