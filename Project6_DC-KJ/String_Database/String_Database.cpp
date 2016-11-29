@@ -19,8 +19,8 @@ int String_Database::getCount(std::string & myString)
 {
 	mutex.lock();
 	int count = 0;
-	for (int i = 0; i < myStrings.size(); i++) {
-		if (myStrings.at(i) == myString)
+	for(myStringsIter=myStrings.begin(); myStringsIter < myStrings.end(); myStringsIter++) {
+		if (*myStringsIter == myString)
 			count++;
 	}
 	mutex.unlock();
