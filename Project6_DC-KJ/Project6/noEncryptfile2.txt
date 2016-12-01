@@ -1,6 +1,6 @@
-PerkinsFBis lit,30007
-more cool stuff,40070
-abcxyz123,10000
-fun stuff,50700
-Davis is cool,20000
-chocolate,60000
+PerkinsFBis lit,3007
+more cool stuff,4070
+fun stuff,5700
+abcxyz123,1000
+Davis is cool,2000
+I Hate SArah,6000

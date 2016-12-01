@@ -8,11 +8,13 @@ String_Data const & String_Data::operator=(String_Data const & other)
 {
 	// TODO: insert return statement here
 	// WHAT DOES THIS DO???
+	//assignment operator for assigning 1 string_data to another string_data
 	return other;
 }
 
 String_Data::String_Data(std::string data, int useCount): data(data),useCount(useCount)
 {
+	// setup object variables on creation
 	this->data = data;
 	this->useCount = useCount;
 }

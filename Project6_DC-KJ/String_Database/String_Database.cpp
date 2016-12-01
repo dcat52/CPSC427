@@ -10,18 +10,29 @@ String_Database::~String_Database(void)
 
 void String_Database::add(std::string & myString)
 {
+	// lock the mutex
 	mutex.lock();
+
+	// keep track if data already exists
 	bool exists = false;
+
+	// go through the string_data vector
 	for (int i = 0; i < myStrings.size(); i++) {
+
+		// if data already exists, increment count
 		if (myStrings.at(i) == myString) {
 			exists = true;
 			myStrings.at(i).increment();
 		}
 	}
+
+	// if does not exist, add a new entry
 	if (!exists) {
 		String_Data *temp = new String_Data(myString);
 		myStrings.push_back(*temp);
 	}
+
+	// unlock the mutex
 	mutex.unlock();
 }
 
@@ -29,9 +40,6 @@ int String_Database::getCount(std::string & myString)
 {
 	mutex.lock();
 	int count = 0;
-
-	// Do We need to use iterators for looping through myString???
-	// is it inefficient because creating new var? or is it just pointing to old var?
 
 	for (myStringsIter = myStrings.begin(); myStringsIter < myStrings.end(); myStringsIter++) {
 		if (*myStringsIter == myString)

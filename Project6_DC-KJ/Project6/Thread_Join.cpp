@@ -76,7 +76,7 @@ void testSerialization(const std::string &MYFILE1, const std::string &MYFILE2, C
 
 	//load it
 	myGlobalCache.load(&myDataStore_File1);
-
+	
 	//save to a different file
 	DataStore_File myDataStore_File2(MYFILE2,pCrypto);
 	myGlobalCache.save(&myDataStore_File2);
@@ -95,7 +95,7 @@ int main()
 	tests.push_back("PerkinsFBis lit");
 	tests.push_back("more cool stuff");
 	tests.push_back("fun stuff");
-	tests.push_back("chocolate");
+	tests.push_back("I Hate SArah");
 	std::string rand = "randomNoExist";
 
 	std::vector<std::thread> threads;
@@ -106,12 +106,12 @@ int main()
 		threads.push_back(std::thread(ThreadFunc, 1, tests.at(3)));
 		threads.push_back(std::thread(ThreadFunc, 10, tests.at(4)));
 		threads.push_back(std::thread(ThreadFunc, 100, tests.at(5)));
-		j += 10000;
+		j += 1000;
 	}
 
 	for (int i = tests.size()-2; i < tests.size(); i++) {
 		threads.push_back(std::thread(ThreadFunc2, j, tests.at(i)));
-		j += 10000;
+		j += 1000;
 	}
 	//make em all wait to do work
 
@@ -121,12 +121,15 @@ int main()
 	}
 	
 	//Then I go through myGlobalCache and make sure that it holds the correct data
+	std::cout << "myGlobalCache:"<<endl;
 	for (int i = 0; i < tests.size(); i++) {
 		std::cout << tests.at(i) << "\t\t: count: " << myGlobalCache.getCount(tests.at(i)) << endl;
 	}
+	std::cout << endl << "myGlobalCache2:"<<endl;
 	for (int i = tests.size()-2; i < tests.size(); i++) {
 		std::cout << tests.at(i) << "\t\t: count: " << myGlobalCache2.getCount(tests.at(i)) << endl;
 	}
+	std::cout << endl << "none:"<<endl;
 	std::cout << rand << "\t\t: count: " << myGlobalCache.getCount(rand) << endl;
 
 

@@ -2,6 +2,7 @@
 
 DataStore::DataStore(Crypto * pCrypt)
 {
+	// setup myCrypto on object creations
 	myCrypto = pCrypt;
 }
 
@@ -11,6 +12,7 @@ DataStore::~DataStore(void)
 
 bool DataStore::decrypt(std::string & myString)
 {
+	// if crypto is not null, decrypt it
 	if (myCrypto != NULL)
 	{
 		myCrypto->decrypt(myString);
@@ -21,6 +23,7 @@ bool DataStore::decrypt(std::string & myString)
 
 bool DataStore::encrypt(std::string & myString)
 {
+	// if crypto is not null, encrypt it
 	if (myCrypto != NULL)
 	{
 		myCrypto->encrypt(myString);
