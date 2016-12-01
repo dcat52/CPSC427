@@ -27,6 +27,7 @@ public:
 private:
 	bool openFile(std::fstream& myfile,const std::string& myFileName, std::ios_base::openmode mode=std::ios_base::in);
 	void closeFile(std::fstream& myfile);
+	void add(std::vector<String_Data>& myVector, std::string line);
 
 	std::string myFileName;
 };
