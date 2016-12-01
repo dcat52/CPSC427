@@ -27,28 +27,48 @@ String_Database myGlobalCache2;
 void cmpFiles(const std::string &MYFILE1, const std::string &MYFILE2) {
 	std::fstream f1;
 	std::fstream f2;
-	f1.open(MYFILE1);
-	f2.open(MYFILE2);
-
 	std::string str1;
 	std::string str2;
 
-	if (f1.is_open() && f2.is_open())
+	vector<std::string> f1v;
+	vector<std::string> f2v;
+
+	f1.open(MYFILE1);
+	if (f1.is_open())
 	{
-		bool same = true;
-		while (getline(f1, str1) && getline(f2, str2)) {
-			if (str1 != str2) {
-				same = false;
-			}
+		while (getline(f1, str1)) {
+			f1v.push_back(str1);
 		}
-		std::cout << "files are same: ";
-		if (same)
-			std::cout << "true\n";
-		else
-			std::cout << "false\n";
 	}
 	f1.close();
+
+	f2.open(MYFILE2);
+	if (f2.is_open())
+	{
+		while (getline(f2, str2)) {
+			f2v.push_back(str2);
+		}
+	}
 	f2.close();
+	
+	bool same = true;
+
+	if(f1v.size() != f2v.size())
+		same = false;
+
+	for(int i = 0; i < f1v.size() && i < f2v.size(); i++) {
+
+		if (f1v.at(i) == f2v.at(i)) {
+			same = false;
+		}
+	}
+	
+	std::cout << "files are same: ";
+	if (same)
+		std::cout << "true\n";
+	else
+		std::cout << "false\n";
+
 }
 
 //will add myString numbTimes to myGlobalCache
@@ -85,6 +105,7 @@ void testSerialization(const std::string &MYFILE1, const std::string &MYFILE2, C
 	//I use my own objects here to compare the files
 }
 
+// test code, yay
 int main() 
 {
 	//I created and run a bunch(20) of threads that use ThreadFunc above 

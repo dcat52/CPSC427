@@ -70,14 +70,3 @@ bool DataStore_File::save(std::vector<String_Data>& myVector)
 	myFile.close();
 	return true;
 }
-
-bool DataStore_File::openFile(std::fstream & myfile, const std::string & myFileName, std::ios_base::openmode mode)
-{
-	// DO we need to implement these???
-	return false;
-}
-
-void DataStore_File::closeFile(std::fstream & myfile)
-{
-	// DO we need to implement these???
-}

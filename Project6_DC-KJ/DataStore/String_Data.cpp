@@ -6,8 +6,6 @@ using namespace std;
 
 String_Data const & String_Data::operator=(String_Data const & other)
 {
-	// TODO: insert return statement here
-	// WHAT DOES THIS DO???
 	//assignment operator for assigning 1 string_data to another string_data
 	return other;
 }

@@ -38,45 +38,65 @@ void String_Database::add(std::string & myString)
 
 int String_Database::getCount(std::string & myString)
 {
+	// lock mutex
 	mutex.lock();
+
 	int count = 0;
 
+	// go through string_data vector
 	for (myStringsIter = myStrings.begin(); myStringsIter < myStrings.end(); myStringsIter++) {
+		
+		// if two datums are equal
 		if (*myStringsIter == myString)
 		{
-			String_Data temp = *myStringsIter;
-			count = temp.getCount();
+			// get count of myStringIter
+			count = myStringsIter->getCount();
 		}
 	}
-	for (int i = 0; i < myStrings.size(); i++) {
-		if (myStrings.at(i) == myString) {
-			count = myStrings.at(i).getCount();
-		}
 
-	}
+	// unlock mutex
 	mutex.unlock();
+
 	return count;
 }
 
 void String_Database::clear()
 {
+	// lock mutex
 	mutex.lock();
+
+	// clear string_data vector
 	myStrings.clear();
+
+	// unlock mutex
 	mutex.unlock();
 }
 
 bool String_Database::load(DataStore * myDataStore)
 {
+	// lock mutex
 	mutex.lock();
+
+	// load from file
 	myDataStore->load(myStrings);
+
+	// unlock mutex
 	mutex.unlock();
-	return false;
+
+	return true;
 }
 
 bool String_Database::save(DataStore * myDataStore)
 {
+	// lock mutex
 	mutex.lock();
+
+	// save to file
 	myDataStore->save(myStrings);
+
+	// unlock mutex
 	mutex.unlock();
-	return false;
+
+
+	return true;
 }
