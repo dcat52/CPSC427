@@ -11,7 +11,17 @@ String_Database::~String_Database(void)
 void String_Database::add(std::string & myString)
 {
 	mutex.lock();
-	myStrings.push_back(myString);
+	bool exists = false;
+	for (int i = 0; i < myStrings.size(); i++) {
+		if (myStrings.at(i) == myString) {
+			exists = true;
+			myStrings.at(i).increment();
+		}
+	}
+	if (!exists) {
+		String_Data *temp = new String_Data(myString);
+		myStrings.push_back(*temp);
+	}
 	mutex.unlock();
 }
 
@@ -20,8 +30,10 @@ int String_Database::getCount(std::string & myString)
 	mutex.lock();
 	int count = 0;
 	for (int i = 0; i < myStrings.size(); i++) {
-		if (myStrings.at(i) == myString)
-			count++;
+		if (myStrings.at(i) == myString) {
+			count = myStrings.at(i).getCount();
+		}
+
 	}
 	mutex.unlock();
 	return count;

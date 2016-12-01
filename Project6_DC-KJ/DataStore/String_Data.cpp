@@ -4,6 +4,12 @@
 
 using namespace std;
 
+String_Data const & String_Data::operator=(String_Data const & other)
+{
+	// TODO: insert return statement here
+	return other;
+}
+
 String_Data::String_Data(std::string data, int useCount): data(data),useCount(useCount)
 {
 }
