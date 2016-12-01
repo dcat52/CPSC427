@@ -1,2 +1,6 @@
-testString,200
-str2,300
+PerkinsFBis lit,30007
+more cool stuff,40070
+abcxyz123,10000
+fun stuff,50700
+Davis is cool,20000
+chocolate,60000

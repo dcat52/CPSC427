@@ -22,6 +22,7 @@ const int NUMBER_TIMES_TO_ADD_STRING = 20;
 
 ////global database object 
 String_Database myGlobalCache;
+String_Database myGlobalCache2;
 
 void cmpFiles(const std::string &MYFILE1, const std::string &MYFILE2) {
 	std::fstream f1;
@@ -40,11 +41,11 @@ void cmpFiles(const std::string &MYFILE1, const std::string &MYFILE2) {
 				same = false;
 			}
 		}
-		cout << "files are same: ";
+		std::cout << "files are same: ";
 		if (same)
-			cout << "true\n";
+			std::cout << "true\n";
 		else
-			cout << "false\n";
+			std::cout << "false\n";
 	}
 	f1.close();
 	f2.close();
@@ -58,8 +59,15 @@ void ThreadFunc(int numbTimes, std::string myString)
 		myGlobalCache.add(myString);
 	}
 }
+void ThreadFunc2(int numbTimes, std::string myString)
+{
+	for (int i = 0; i < numbTimes; i++)
+	{
+		myGlobalCache2.add(myString);
+	}
+}
 
-bool testSerialization(const std::string &MYFILE1, const std::string &MYFILE2, Crypto *pCrypto){
+void testSerialization(const std::string &MYFILE1, const std::string &MYFILE2, Crypto *pCrypto){
 	DataStore_File myDataStore_File1(MYFILE1,pCrypto);
 	myGlobalCache.save(&myDataStore_File1);
 
@@ -75,21 +83,36 @@ bool testSerialization(const std::string &MYFILE1, const std::string &MYFILE2, C
 
 	cmpFiles(MYFILE1, MYFILE2);
 	//I use my own objects here to compare the files
-	return true;
 }
 
 int main() 
 {
 	//I created and run a bunch(20) of threads that use ThreadFunc above 
-	std::string test = "testString";
-	std::string test2 = "str2";
-	std::string rand = "randomNonExistant";
+	vector<string> tests;
+	tests.push_back("testString");
+	tests.push_back("abcxyz123");
+	tests.push_back("Davis is cool");
+	tests.push_back("PerkinsFBis lit");
+	tests.push_back("more cool stuff");
+	tests.push_back("fun stuff");
+	tests.push_back("chocolate");
+	std::string rand = "randomNoExist";
 
 	std::vector<std::thread> threads;
 
-	threads.push_back(std::thread(ThreadFunc,200,test));
-	threads.push_back(std::thread(ThreadFunc, 200, test2));
-	threads.push_back(std::thread(ThreadFunc, 100, test2));
+	int j = 0;
+	for (int i = 0; i < tests.size(); i++) {
+		threads.push_back(std::thread(ThreadFunc, j, tests.at(i)));
+		threads.push_back(std::thread(ThreadFunc, 1, tests.at(3)));
+		threads.push_back(std::thread(ThreadFunc, 10, tests.at(4)));
+		threads.push_back(std::thread(ThreadFunc, 100, tests.at(5)));
+		j += 10000;
+	}
+
+	for (int i = tests.size()-2; i < tests.size(); i++) {
+		threads.push_back(std::thread(ThreadFunc2, j, tests.at(i)));
+		j += 10000;
+	}
 	//make em all wait to do work
 
 	//Then I wait for all of them to finish so my program does not crash
@@ -98,9 +121,13 @@ int main()
 	}
 	
 	//Then I go through myGlobalCache and make sure that it holds the correct data
-	cout << myGlobalCache.getCount(test) << endl;
-	cout << myGlobalCache.getCount(test2) << endl;
-	cout << myGlobalCache.getCount(rand) << endl;
+	for (int i = 0; i < tests.size(); i++) {
+		std::cout << tests.at(i) << "\t\t: count: " << myGlobalCache.getCount(tests.at(i)) << endl;
+	}
+	for (int i = tests.size()-2; i < tests.size(); i++) {
+		std::cout << tests.at(i) << "\t\t: count: " << myGlobalCache2.getCount(tests.at(i)) << endl;
+	}
+	std::cout << rand << "\t\t: count: " << myGlobalCache.getCount(rand) << endl;
 
 
 	//then I test that serialization works correctly
@@ -108,7 +135,7 @@ int main()
 	testSerialization(NO_ENCRYPT_FILE1, NO_ENCRYPT_FILE2, 0);
 
 	//then with
-	Crypto_AES myCrypto("I Like Rollos   ");
-	testSerialization(ENCRYPT_FILE1, ENCRYPT_FILE2, &myCrypto);
+	Crypto_AES myCrypto2("I Like Rollos   ");
+	testSerialization(ENCRYPT_FILE1, ENCRYPT_FILE2, &myCrypto2);
 
 }
