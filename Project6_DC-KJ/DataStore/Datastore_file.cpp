@@ -12,16 +12,19 @@ DataStore_File::~DataStore_File(void)
 
 bool DataStore_File::load(std::vector<String_Data>& myVector)
 {
-	// Do we need to clear myVector before loading???
 	std::string line;
-	std::ifstream myFile(myFileName);
+	std::ifstream myFile;
 	myFile.open(myFileName);
 	if (myFile.is_open())
 	{
 		while (getline(myFile, line))
 		{
 			//TODO decrypt if present
-			add(myVector, line);
+			std::string data;
+			int count;
+			String_Data::parseData(line, data, count);
+			String_Data *temp = new String_Data(data, count);
+			myVector.push_back(*temp);
 		}
 	}
 	myFile.close();
@@ -31,11 +34,12 @@ bool DataStore_File::load(std::vector<String_Data>& myVector)
 bool DataStore_File::save(std::vector<String_Data>& myVector)
 {
 	std::string line;
-	std::ofstream myFile(myFileName);
+	std::ofstream myFile;
 	myFile.open(myFileName);
 	if (myFile.is_open())
 	{
 		for (int i = 0; i < myVector.size(); i++) {
+			line = myVector.at(i).serialize();
 			// TODO encrypt if present
 			myFile << line << "\n";
 		}
@@ -54,19 +58,4 @@ bool DataStore_File::openFile(std::fstream & myfile, const std::string & myFileN
 void DataStore_File::closeFile(std::fstream & myfile)
 {
 	// DO we need to implement these???
-}
-
-void DataStore_File::add(std::vector<String_Data>& myVector, std::string line)
-{
-	bool exists = false;
-	for (int i = 0; i < myVector.size(); i++) {
-		if (myVector.at(i) == line) {
-			exists = true;
-			myVector.at(i).increment();
-		}
-	}
-	if (!exists) {
-		String_Data *temp = new String_Data(line);
-		myVector.push_back(*temp);
-	}
 }

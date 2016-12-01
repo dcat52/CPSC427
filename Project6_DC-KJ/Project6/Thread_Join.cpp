@@ -73,12 +73,6 @@ int main()
 	cout << myGlobalCache.getCount(test2) << endl;
 	cout << myGlobalCache.getCount(rand) << endl;
 
-	myGlobalCache.clear();
-	cout << "cache cleared" << endl;
-
-	cout << myGlobalCache.getCount(test) << endl;
-	cout << myGlobalCache.getCount(test2) << endl;
-	cout << myGlobalCache.getCount(rand) << endl;
 
 	//then I test that serialization works correctly
 	//first without encryption, 
