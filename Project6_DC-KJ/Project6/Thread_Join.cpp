@@ -32,23 +32,22 @@ void ThreadFunc(int numbTimes, std::string myString)
 }
 
 bool testSerialization(const std::string &MYFILE1, const std::string &MYFILE2, Crypto *pCrypto){
-	DataStore_File myDataStore_File1(MYFILE1,pCrypto);
-	myGlobalCache.save(&myDataStore_File1);
+	//DataStore_File myDataStore_File1(MYFILE1,pCrypto);
+	//myGlobalCache.save(&myDataStore_File1);
 
 	//clear cache
-	myGlobalCache.clear();
+	//myGlobalCache.clear();
 
 	//load it
-	myGlobalCache.load(&myDataStore_File1);
+	//myGlobalCache.load(&myDataStore_File1);
 
 	//save to a different file
-	DataStore_File myDataStore_File2(MYFILE2,pCrypto);
-	myGlobalCache.save(&myDataStore_File2);
+	//DataStore_File myDataStore_File2(MYFILE2,pCrypto);
+	//myGlobalCache.save(&myDataStore_File2);
 
 	//I use my own objects here to compare the files
 	return true;
 }
-
 int main() 
 {
 	//I created and run a bunch(20) of threads that use ThreadFunc above 

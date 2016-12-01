@@ -2,7 +2,6 @@
 
 DataStore::DataStore(Crypto * pCrypt)
 {
-	myCrypto = pCrypt;
 }
 
 DataStore::~DataStore(void)

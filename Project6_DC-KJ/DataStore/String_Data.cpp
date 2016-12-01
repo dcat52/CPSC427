@@ -7,14 +7,11 @@ using namespace std;
 String_Data const & String_Data::operator=(String_Data const & other)
 {
 	// TODO: insert return statement here
-	// WHAT DOES THIS DO???
 	return other;
 }
 
 String_Data::String_Data(std::string data, int useCount): data(data),useCount(useCount)
 {
-	this->data = data;
-	this->useCount = useCount;
 }
 
 String_Data::~String_Data(void)
