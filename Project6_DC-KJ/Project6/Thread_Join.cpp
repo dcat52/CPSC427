@@ -2,6 +2,7 @@
 #include <iostream>       // std::cout
 #include <thread>         // std::thread
 #include <sstream>
+#include <fstream>
 #include "..\includes\String_Database.h"
 #include "..\includes\DataStore_File.h"
 #include "..\includes\Crypto_AES.h"
@@ -21,6 +22,33 @@ const int NUMBER_TIMES_TO_ADD_STRING = 20;
 
 ////global database object 
 String_Database myGlobalCache;
+
+void cmpFiles(const std::string &MYFILE1, const std::string &MYFILE2) {
+	std::fstream f1;
+	std::fstream f2;
+	f1.open(MYFILE1);
+	f2.open(MYFILE2);
+
+	std::string str1;
+	std::string str2;
+
+	if (f1.is_open() && f2.is_open())
+	{
+		bool same = true;
+		while (getline(f1, str1) && getline(f2, str2)) {
+			if (str1 != str2) {
+				same = false;
+			}
+		}
+		cout << "files are same: ";
+		if (same)
+			cout << "true\n";
+		else
+			cout << "false\n";
+	}
+	f1.close();
+	f2.close();
+}
 
 //will add myString numbTimes to myGlobalCache
 void ThreadFunc(int numbTimes, std::string myString) 
@@ -45,6 +73,7 @@ bool testSerialization(const std::string &MYFILE1, const std::string &MYFILE2, C
 	DataStore_File myDataStore_File2(MYFILE2,pCrypto);
 	myGlobalCache.save(&myDataStore_File2);
 
+	cmpFiles(MYFILE1, MYFILE2);
 	//I use my own objects here to compare the files
 	return true;
 }
@@ -79,7 +108,7 @@ int main()
 	testSerialization(NO_ENCRYPT_FILE1, NO_ENCRYPT_FILE2, 0);
 
 	//then with
-	//Crypto_AES myCrypto("I Like Rollos   ");
-	//testSerialization(ENCRYPT_FILE1, ENCRYPT_FILE2, &myCrypto);
+	Crypto_AES myCrypto("I Like Rollos   ");
+	testSerialization(ENCRYPT_FILE1, ENCRYPT_FILE2, &myCrypto);
 
 }

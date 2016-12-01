@@ -20,6 +20,7 @@ bool DataStore_File::load(std::vector<String_Data>& myVector)
 		while (getline(myFile, line))
 		{
 			//TODO decrypt if present
+			decrypt(line);
 			std::string data;
 			int count;
 			String_Data::parseData(line, data, count);
@@ -41,6 +42,7 @@ bool DataStore_File::save(std::vector<String_Data>& myVector)
 		for (int i = 0; i < myVector.size(); i++) {
 			line = myVector.at(i).serialize();
 			// TODO encrypt if present
+			encrypt(line);
 			myFile << line << "\n";
 		}
 
