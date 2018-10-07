@@ -1,0 +1,5 @@
+C:\Users\Davis\OneDrive\Documents\GitHub\CPSC427-Project3\Project3_Solution\stdafx.cpp(0):  No copyright message found.  You should have a line: "Copyright [year] <Copyright Owner>"  [legal/copyright] [5]
+C:\Users\Davis\OneDrive\Documents\GitHub\CPSC427-Project3\Project3_Solution\stdafx.cpp(5):  Include the directory when naming .h files  [build/include] [4]
+C:\Users\Davis\OneDrive\Documents\GitHub\CPSC427-Project3\Project3_Solution\stdafx.cpp(7):  Missing username in TODO; it should look like "// TODO(my_username): Stuff."  [readability/todo] [2]
+Done processing C:\Users\Davis\OneDrive\Documents\GitHub\CPSC427-Project3\Project3_Solution\stdafx.cpp
+Total errors found: 3

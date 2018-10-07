@@ -1,0 +1,8 @@
+C:\Users\Davis\OneDrive\Documents\GitHub\CPSC427-Project3\Project3_Solution\stdafx.h(0):  No copyright message found.  You should have a line: "Copyright [year] <Copyright Owner>"  [legal/copyright] [5]
+C:\Users\Davis\OneDrive\Documents\GitHub\CPSC427-Project3\Project3_Solution\stdafx.h(0):  No #ifndef header guard found, suggested CPP variable is: PROJECT3_SOLUTION_STDAFX_H_  [build/header_guard] [5]
+C:\Users\Davis\OneDrive\Documents\GitHub\CPSC427-Project3\Project3_Solution\stdafx.h(8):  Include the directory when naming .h files  [build/include] [4]
+C:\Users\Davis\OneDrive\Documents\GitHub\CPSC427-Project3\Project3_Solution\stdafx.h(10):  Found C system header after other header. Should be: stdafx.h, c system, c++ system, other.  [build/include_order] [4]
+C:\Users\Davis\OneDrive\Documents\GitHub\CPSC427-Project3\Project3_Solution\stdafx.h(11):  Found C system header after other header. Should be: stdafx.h, c system, c++ system, other.  [build/include_order] [4]
+C:\Users\Davis\OneDrive\Documents\GitHub\CPSC427-Project3\Project3_Solution\stdafx.h(15):  Missing username in TODO; it should look like "// TODO(my_username): Stuff."  [readability/todo] [2]
+Done processing C:\Users\Davis\OneDrive\Documents\GitHub\CPSC427-Project3\Project3_Solution\stdafx.h
+Total errors found: 6
